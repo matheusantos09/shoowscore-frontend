@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { OptionInterface } from "../../Interfaces/ComboBox";
+import { useTranslation } from "react-i18next";
 
 function sleep( delay = 0 ) {
   return new Promise(( resolve ) => {
@@ -15,6 +16,7 @@ export default function InputSearchData() {
   const [ open, setOpen ] = useState(false);
   const [ options, setOptions ] = useState<OptionInterface[]>([]);
   const loading = open && options.length === 0;
+  const { t } = useTranslation()
 
   useEffect(() => {
     let active = true;
@@ -60,7 +62,7 @@ export default function InputSearchData() {
       renderInput={ ( params ) => (
         <TextField
           { ...params }
-          label="Digite um nome para busca"
+          label={ t('inputs.search_data') }
           variant="outlined"
           InputProps={ {
             ...params.InputProps,

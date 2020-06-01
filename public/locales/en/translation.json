@@ -3,5 +3,20 @@
     "name": "ScoreShoow",
     "description": "Encontrando oque você queria para assistir na sua noite",
     "shortDescription": "Encontre o incontravel"
+  },
+  "types_collection": {
+    "default": "Types",
+    "tv_show": "TV Show",
+    "movie": "Movies"
+  },
+  "inputs": {
+    "search_data": "Enter a name for search",
+    "change_language": {
+      "label": "Language",
+      "flags": {
+        "ptBR": "Flag from Brazil",
+        "enEN": "Flag from United States"
+      }
+    }
   }
 }
