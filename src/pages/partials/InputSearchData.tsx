@@ -1,10 +1,10 @@
 import fetch from 'cross-fetch';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from "react-i18next";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { OptionInterface } from "../../Interfaces/ComboBox";
-import { useTranslation } from "react-i18next";
 
 function sleep( delay = 0 ) {
   return new Promise(( resolve ) => {
@@ -16,7 +16,7 @@ export default function InputSearchData() {
   const [ open, setOpen ] = useState(false);
   const [ options, setOptions ] = useState<OptionInterface[]>([]);
   const loading = open && options.length === 0;
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   useEffect(() => {
     let active = true;
@@ -46,6 +46,10 @@ export default function InputSearchData() {
     }
   }, [ open ]);
 
+  const handleChangeAutoComplete = ( event: any, newValue: string | null ) => {
+    console.log(newValue);
+  }
+
   return (
     <Autocomplete
       open={ open }
@@ -55,8 +59,10 @@ export default function InputSearchData() {
       onClose={ () => {
         setOpen(false);
       } }
-      getOptionSelected={ ( option, value ) => option.name === value.name }
-      getOptionLabel={ ( option ) => option.name }
+      // @ts-ignore
+      onChange={ handleChangeAutoComplete }
+      getOptionSelected={ ( option, value ) => option.title === value.title }
+      getOptionLabel={ ( option ) => option.title }
       options={ options }
       loading={ loading }
       renderInput={ ( params ) => (
@@ -67,10 +73,10 @@ export default function InputSearchData() {
           InputProps={ {
             ...params.InputProps,
             endAdornment: (
-              <React.Fragment>
+              <>
                 { loading ? <CircularProgress color="inherit" size={ 20 } /> : null }
                 { params.InputProps.endAdornment }
-              </React.Fragment>
+              </>
             ),
           } }
         />

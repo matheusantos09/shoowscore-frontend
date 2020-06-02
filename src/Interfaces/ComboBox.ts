@@ -1,3 +1,3 @@
 export interface OptionInterface {
-  name: string;
+  title: string;
 }

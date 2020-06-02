@@ -1,10 +1,17 @@
 import React from 'react';
+
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, makeStyles, MuiThemeProvider, responsiveFontSizes } from '@material-ui/core/styles';
+
+import { Router } from "react-router-dom";
 
 import Routes from "../../Routes";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import history from "../../services/history";
 
 const useStyles = makeStyles(( theme ) => ( {
   root: {
@@ -50,22 +57,40 @@ function ContainerDefault() {
   const classes = useStyles();
 
   return (
-    <MuiThemeProvider theme={ theme }>
-      <div className={ classes.root }>
-        <CssBaseline />
+    <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={ 5000 }
+        hideProgressBar={ false }
+        newestOnTop={ false }
+        closeOnClick
+        rtl={ false }
+        pauseOnFocusLoss={ false }
+        draggable
+        pauseOnHover
+      />
 
-        <Header />
+      <Router history={ history }>
 
-        <main className={ classes.content }>
-          <div className={ classes.toolbar } />
+        <MuiThemeProvider theme={ theme }>
+          <div className={ classes.root }>
+            <CssBaseline />
 
-          <Routes />
+            <Header />
 
-          <Footer />
+            <main className={ classes.content }>
+              <div className={ classes.toolbar } />
 
-        </main>
-      </div>
-    </MuiThemeProvider>
+              <Routes />
+
+              <Footer />
+
+            </main>
+          </div>
+        </MuiThemeProvider>
+
+      </Router>
+    </>
   );
 }
 

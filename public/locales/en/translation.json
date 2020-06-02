@@ -18,5 +18,10 @@
         "enEN": "Flag from United States"
       }
     }
+  },
+  "validations": {
+    "home": {
+      "fields_empty": "Please fill in the fields to continue"
+    }
   }
 }

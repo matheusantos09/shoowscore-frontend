@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import i18next from 'i18next';
 
+import { Link } from 'react-router-dom';
+
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -108,6 +110,11 @@ const useStyles = makeStyles(( theme ) => ( {
   toolbarTop: {
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  link: {
+    color: "#FFF",
+    textDecoration: "none !important",
+    outline: "unset !important"
   }
 } ));
 
@@ -154,7 +161,7 @@ function Header() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              { t('site.name') }
+              <Link to="/" className={ classes.link }>{ t('site.name') }</Link>
             </Typography>
           </div>
           <div>
