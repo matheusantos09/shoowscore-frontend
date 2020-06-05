@@ -67,7 +67,6 @@ const Index = () => {
     }
 
     history.push(`/view/${ type }/${ element }`)
-
   }
 
   return (

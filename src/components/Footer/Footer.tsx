@@ -1,8 +1,11 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import { site } from "../../configs/site-env";
 import { useTranslation } from "react-i18next";
+
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+
+import { site } from "../../configs/site-env";
+
 
 const useStyles = makeStyles(( theme ) => ( {
   footer: {
@@ -21,8 +24,9 @@ function Footer() {
       </Typography>
 
       <Typography variant="body2" color="textSecondary" align="center">
-        Copyright © { t('site.name') } { site.version }
-        { new Date().getFullYear() }
+        <span>Copyright © <b>{ t('site.name') }</b></span>
+        <br />
+        { site.version } | { new Date().getFullYear() }
       </Typography>
 
     </footer>
