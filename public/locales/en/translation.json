@@ -1,8 +1,8 @@
 {
   "site": {
     "name": "ScoreShoow",
-    "description": "Encontrando oque você queria para assistir na sua noite",
-    "shortDescription": "Encontre o incontravel"
+    "description": "Finding what you wanted to watch on your night",
+    "shortDescription": "Find the not found"
   },
   "types_collection": {
     "default": "Types",
