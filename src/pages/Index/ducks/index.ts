@@ -8,6 +8,6 @@ function* sagaSetFilterType( action: FilterTypeAction ) {
 
 export default function* rootSaga() {
   return yield all([
-    yield takeLatest(TypesFilter.FILTER_TYPE, sagaSetFilterType)
+    yield takeLatest(TypesFilter.FILTER_TYPE_SAGA, sagaSetFilterType)
   ])
 }

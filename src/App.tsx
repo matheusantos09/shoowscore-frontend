@@ -1,9 +1,20 @@
 import React from 'react';
+import { Provider } from 'react-redux'
+
+import store from './store'
+
 import ContainerDefault from "./components/Container/ContainerDefault";
+
+store.subscribe(() => {
+  console.log('STATE REDUX')
+  console.log(store.getState())
+})
 
 function App() {
   return (
-    <ContainerDefault />
+    <Provider store={ store }>
+      <ContainerDefault />
+    </Provider>
   );
 }
 
