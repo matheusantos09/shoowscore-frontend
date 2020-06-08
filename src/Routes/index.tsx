@@ -8,7 +8,7 @@ const View = lazy(() => import('../pages/View'));
 const Routes = () => (
   <Suspense fallback={ MainSpinner }>
     <Route path="/" exact component={ Index } />
-    <Route path="/view/:type/:element" exact component={ View } />
+    <Route path="/view/:element" exact component={ View } />
   </Suspense>
 );
 

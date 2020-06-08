@@ -23,5 +23,19 @@
     "home": {
       "fields_empty": "Please fill in the fields to continue"
     }
+  },
+  "phrase": {
+    "search-content": "Watch about series or movie",
+    "loading": "Loading"
+  },
+  "button": {
+    "search": "Search"
+  },
+  "api": {
+    "errors": {
+      "timeout": "Sorry but it seems that we are slow to find your content",
+      "code300": "Sorry but unable to load your data",
+      "fatal": "Sorry but unable to load your data"
+    }
   }
 }

@@ -1,5 +1,41 @@
 {
   "site": {
-    "name": "Teste"
+    "name": "ScoreShoow",
+    "description": "Finding what you wanted to watch on your night",
+    "shortDescription": "Find the not found"
+  },
+  "types_collection": {
+    "default": "Types",
+    "tv_show": "TV Show",
+    "movie": "Movies"
+  },
+  "inputs": {
+    "search_data": "Enter a name for search",
+    "change_language": {
+      "label": "Language",
+      "flags": {
+        "ptBR": "Flag from Brazil",
+        "enEN": "Flag from United States"
+      }
+    }
+  },
+  "validations": {
+    "home": {
+      "fields_empty": "Please fill in the fields to continue"
+    }
+  },
+  "phrase": {
+    "search-content": "Watch about series or movie",
+    "loading": "Loading"
+  },
+  "button": {
+    "search": "Search"
+  },
+  "api": {
+    "errors": {
+      "timeout": "Desculpe mas parece que estamos com uma lentidão na busca de seu conteúdo",
+      "code300": "Desculpe mas não possivel carregar seus dados",
+      "fatal": "Desculpe mas não possivel carregar seus dados"
+    }
   }
 }

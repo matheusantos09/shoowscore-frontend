@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Container from "@material-ui/core/Container";
+
+import LoaderCam from "../../components/LoaderCam";
 
 const View = () => {
+
+  const [loading, setLoading] = useState<boolean>(true)
+  const [content, setContent] = useState();
+
   return (
-    <h1>Olaaaaaaaaaaaaaaa tudo bem maris</h1>
+    <>
+      <div>
+        <main>
+          <Container maxWidth="sm">
+
+            {loading ? <LoaderCam/> : null}
+
+            <pre>
+              {content}
+            </pre>
+
+          </Container>
+        </main>
+      </div>
+    </>
   )
 }
 
