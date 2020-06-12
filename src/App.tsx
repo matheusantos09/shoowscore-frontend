@@ -6,8 +6,7 @@ import store from './store'
 import ContainerDefault from "./components/Container/ContainerDefault";
 
 store.subscribe(() => {
-  console.log('STATE REDUX')
-  console.log(store.getState())
+  console.log('STATE REDUX', store.getState())
 })
 
 function App() {

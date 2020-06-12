@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+import { useDispatch } from "react-redux";
 import Container from "@material-ui/core/Container";
+import { useParams } from "react-router";
+
+import { Creators as CreatorsElement } from './ducks/element'
 
 import LoaderCam from "../../components/LoaderCam";
+import { useElementSelector } from "../../store/reducersRoot/element";
 
 const View = () => {
 
-  const [loading, setLoading] = useState<boolean>(true)
-  const [content, setContent] = useState();
+  let { elementName } = useParams();
+  elementName = decodeURIComponent(elementName);
+
+  const element = useElementSelector(state => state.element)
+
+  const [ loading, setLoading ] = useState<boolean>(element.loading)
+  const [ content, setContent ] = useState(element.content);
+  const [ alternativesElements, setAlternativesElements ] = useState(element.alternativesElements);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(CreatorsElement.fetchElementSaga(elementName))
+  }, [ dispatch, elementName ])
+
+  console.log('alternativesElements', alternativesElements);
+  console.log('content', content);
 
   return (
     <>
@@ -15,11 +34,11 @@ const View = () => {
         <main>
           <Container maxWidth="sm">
 
-            {loading ? <LoaderCam/> : null}
+            { loading ? <LoaderCam /> : (
 
-            <pre>
-              {content}
-            </pre>
+              <h1>Carregadoooooooooooooooooooooooooooo</h1>
+
+            ) }
 
           </Container>
         </main>
