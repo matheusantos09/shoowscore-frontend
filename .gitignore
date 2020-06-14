@@ -24,3 +24,5 @@ yarn-error.log*
 
 A_FAZER.txt
 .idea
+
+yarn.lock
