@@ -43,6 +43,11 @@
       "manyAlternatives": {
         "default": "Select 1 movie/tv show to continue"
       }
+    },
+    "index": {
+      "validation": {
+        "fill-search": "Fill the title of content"
+      }
     }
   }
 }

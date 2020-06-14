@@ -13,7 +13,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { site } from "../../configs/site-env";
 import { OptionInterface } from "../../Interfaces/ComboBox";
 import { toastError } from "../../helpers/toastCustom";
-import history from "../../services/history";
 
 const suggestion = [
   { title: 'The Shawshank Redemption' },
@@ -69,7 +68,7 @@ function QuizSuggestion() {
       return true;
     }
 
-    history.push(`/view/${ type }/${ element }`)
+    // history.push(`/view/${ type }/${ element }`)
   }
 
   return <form action="" onSubmit={ handleSubmit }>

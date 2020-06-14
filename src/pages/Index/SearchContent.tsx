@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next";
+import { Redirect } from "react-router";
 
 import Grid from "@material-ui/core/Grid";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -9,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { OptionInterface } from "../../Interfaces/ComboBox";
-import history from "../../services/history";
+import { toastError } from "../../helpers/toastCustom";
 
 const suggestion = [
   { title: 'The Shawshank Redemption' },
@@ -25,6 +26,7 @@ function SearchContent() {
   const [ options ] = useState<OptionInterface[]>(suggestion);
   const [ element, setElement ] = useState<string>('');
   const [ loading, setLoading ] = useState<boolean>(false);
+  const [ redirect, setRedirect ] = useState<boolean>(false);
 
   const handleChangeAutoComplete = ( event: any, newInputValue: string ) => {
     setElement(newInputValue);
@@ -32,12 +34,21 @@ function SearchContent() {
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
-  ): Promise<void | boolean> => {
+  ): Promise<any> => {
     event.preventDefault();
+    setLoading(true);
 
-    setLoading(true)
+    if (element === '') {
+      setLoading(false);
 
-    history.push(`/view/${ element }`)
+      return toastError(t('pages.index.validation.fill-search'));
+    }
+
+    setRedirect(true);
+  }
+
+  if (redirect) {
+    return <Redirect to={ `/view/${ element }` } />
   }
 
   return (
@@ -48,7 +59,6 @@ function SearchContent() {
       <form action="" onSubmit={ handleSubmit }>
         <Grid container spacing={ 2 }>
           <Grid item xs={ 10 }>
-
 
             <Autocomplete
               // getOptionSelected={ ( option, value ) => option.title === value.title }

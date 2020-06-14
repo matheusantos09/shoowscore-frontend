@@ -6,12 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, makeStyles, MuiThemeProvider, responsiveFontSizes } from '@material-ui/core/styles';
 
-import { Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import Routes from "../../Routes";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import history from "../../services/history";
 
 const useStyles = makeStyles(( theme ) => ( {
   root: {
@@ -70,15 +69,16 @@ function ContainerDefault() {
         pauseOnHover
       />
 
-      <Router history={ history }>
+      <MuiThemeProvider theme={ theme }>
+        <BrowserRouter>
 
-        <MuiThemeProvider theme={ theme }>
           <div className={ classes.root }>
             <CssBaseline />
 
             <Header />
 
             <main className={ classes.content }>
+
               <div className={ classes.toolbar } />
 
               <Routes />
@@ -87,9 +87,9 @@ function ContainerDefault() {
 
             </main>
           </div>
-        </MuiThemeProvider>
+        </BrowserRouter>
 
-      </Router>
+      </MuiThemeProvider>
     </>
   );
 }
