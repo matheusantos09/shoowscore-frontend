@@ -8,29 +8,31 @@ const TIMEOUT = 20000;
 
 function* sagaFetchElement( action: ElementTypeAction ) {
 
-  console.log('action', action)// const { t } = useTranslation()
-
-  const title = ''
-
   try {
     const { response, timeout } = yield race({
-      response: call(fetchElementByTitle, title),
+      response: call(fetchElementByTitle, action.title),
       timeout: delay(TIMEOUT)
     });
 
     if (timeout) {
-      yield put(CreatorsElement.fetchError(i18n.t('api.errors.timeout')))
+      yield put(CreatorsElement.fetchElementError(i18n.t('api.errors.timeout')))
       return;
     }
 
     if (response.status < 300) {
-      yield put(CreatorsElement.fetchSuccess(response.data))
+
+      if (response.data.length > 1) {
+        yield put(CreatorsElement.fetchAlternativeElements(response.data))
+      } else {
+        yield put(CreatorsElement.fetchElementSuccess(response.data))
+      }
+
     } else {
-      yield put(CreatorsElement.fetchError(i18n.t('api.errors.code300')))
+      yield put(CreatorsElement.fetchElementError(i18n.t('api.errors.code300')))
     }
 
   } catch (e) {
-    yield put(CreatorsElement.fetchError(i18n.t('api.errors.fatal')))
+    yield put(CreatorsElement.fetchElementError(i18n.t('api.errors.fatal')))
     yield console.log(e)
   }
 }

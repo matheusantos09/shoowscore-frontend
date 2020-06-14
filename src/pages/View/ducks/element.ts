@@ -10,7 +10,8 @@ interface InitialState {
 }
 
 export interface TypeAction {
-  element: string;
+  title: string;
+  element: {};
   elements?: [];
   msg?: string;
 }
@@ -33,7 +34,7 @@ const INITIAL_STATE = {
 const fetchSuccess = ( state: InitialState = INITIAL_STATE, action: TypeAction ) => ( {
   ...state,
   loading: false,
-  content: action.element
+  element: action.element
 } )
 
 const fetchAlternativeElementSuccess = ( state: InitialState = INITIAL_STATE, action: TypeAction ) => ( {

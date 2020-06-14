@@ -46,11 +46,11 @@ const Index = () => {
         <Container className={ classes.grid } maxWidth="md">
           <Grid container>
 
-            <Grid xs={ 12 } className={ classes.contentGrid }>
+            <Grid item xs={ 12 } className={ classes.contentGrid }>
               <SearchContent />
             </Grid>
 
-            <Grid xs={ 12 } className={ classes.contentGrid }>
+            <Grid item xs={ 12 } className={ classes.contentGrid }>
               <QuizSuggestion />
             </Grid>
           </Grid>

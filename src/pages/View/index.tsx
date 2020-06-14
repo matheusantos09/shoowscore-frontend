@@ -8,6 +8,7 @@ import { Creators as CreatorsElement } from './ducks/element'
 
 import LoaderCam from "../../components/LoaderCam";
 import { useElementSelector } from "../../store/reducersRoot/element";
+import AlternativesElements from "./AlternativesElements";
 
 const View = () => {
 
@@ -15,6 +16,8 @@ const View = () => {
   elementName = decodeURIComponent(elementName);
 
   const element = useElementSelector(state => state.element)
+
+  console.log('element', element)
 
   const [ loading, setLoading ] = useState<boolean>(element.loading)
   const [ content, setContent ] = useState(element.content);
@@ -25,8 +28,12 @@ const View = () => {
     dispatch(CreatorsElement.fetchElementSaga(elementName))
   }, [ dispatch, elementName ])
 
-  console.log('alternativesElements', alternativesElements);
-  console.log('content', content);
+  useEffect(() => {
+    setLoading(element.loading)
+  }, [ element.loading ])
+
+  // console.log('alternativesElements', alternativesElements);
+  // console.log('content', content);
 
   return (
     <>
@@ -35,9 +42,11 @@ const View = () => {
           <Container maxWidth="sm">
 
             { loading ? <LoaderCam /> : (
-
-              <h1>Carregadoooooooooooooooooooooooooooo</h1>
-
+              element.alternativesElements.length
+                ? <AlternativesElements elements={element.alternativesElements} />
+                : (
+                  <h1>Carregadoooooooooooooooooooooooooooo</h1>
+                )
             ) }
 
           </Container>

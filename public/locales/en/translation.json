@@ -37,5 +37,12 @@
       "code300": "Sorry but unable to load your data",
       "fatal": "Sorry but unable to load your data"
     }
+  },
+  "pages": {
+    "view": {
+      "manyAlternatives": {
+        "default": "Select 1 movie/tv show to continue"
+      }
+    }
   }
 }
