@@ -6,7 +6,7 @@ import i18n from '../../../i18n'
 
 const TIMEOUT = 20000;
 
-function* sagaFetchElement( action: ElementTypeAction ) {
+function* sagaFetchElement ( action: ElementTypeAction ) {
 
   try {
     const { response, timeout } = yield race({
@@ -21,7 +21,7 @@ function* sagaFetchElement( action: ElementTypeAction ) {
 
     if (response.status < 300) {
 
-      if (response.data.length > 1) {
+      if (response.data.payload && Object.keys(response.data.payload.results).length > 1) {
         yield put(CreatorsElement.fetchAlternativeElements(response.data))
       } else {
         yield put(CreatorsElement.fetchElementSuccess(response.data))
@@ -37,7 +37,7 @@ function* sagaFetchElement( action: ElementTypeAction ) {
   }
 }
 
-export default function* rootSaga() {
+export default function* rootSaga () {
   return yield all([
     // @ts-ignore
     yield takeLatest(TypesElement.FETCH_ELEMENT_SAGA, sagaFetchElement),

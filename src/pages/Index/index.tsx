@@ -50,9 +50,9 @@ const Index = () => {
               <SearchContent />
             </Grid>
 
-            <Grid item xs={ 12 } className={ classes.contentGrid }>
+            {/*<Grid item xs={ 12 } className={ classes.contentGrid }>
               <QuizSuggestion />
-            </Grid>
+            </Grid>*/}
           </Grid>
         </Container>
       </main>

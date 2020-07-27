@@ -11,18 +11,60 @@ import Typography from '@material-ui/core/Typography';
 
 import { truncateString } from "../../helpers/truncateString";
 
-interface AlternativesElementsItemInterface {
-  Poster: string;
-  Title: string;
-  Plot: string;
+type AlternativesElementsItemInterface = {
+  elements: {
+    query: string;
+    results: {
+      tv: {
+        page: number;
+        results: {
+          adult: boolean;
+          backdrop_path: null;
+          genre_ids: [];
+          id: number;
+          original_language: string;
+          original_title: string;
+          overview: string;
+          popularity: number
+          poster_path: string;
+          release_date: string;
+          title: string;
+          video: boolean;
+          vote_average: number;
+          vote_count: number;
+        }[];
+        total_pages: number;
+        total_results: number;
+      };
+      movie: {
+        page: number;
+        results: {
+          adult: boolean;
+          backdrop_path: null;
+          genre_ids: [];
+          id: number;
+          original_language: string;
+          original_title: string;
+          overview: string;
+          popularity: number
+          poster_path: string;
+          release_date: string;
+          title: string;
+          video: boolean;
+          vote_average: number;
+          vote_count: number;
+        }[];
+        total_pages: number;
+        total_results: number;
+      }
+    };
+    expiresAt: string;
+  }
 }
 
-interface AlternativesElementsInterface {
-  elements: AlternativesElementsItemInterface[];
-}
-
-const AlternativesElements = ( { elements }: AlternativesElementsInterface ) => {
-  console.log(elements)
+const AlternativesElements = ( { elements }: AlternativesElementsItemInterface ) => {
+  console.log('AlternativesElements', ( elements.results ))
+  console.log('OBJECTTTTTTTTTt', Object.values(elements.results))
 
   const { t } = useTranslation();
 
@@ -38,31 +80,7 @@ const AlternativesElements = ( { elements }: AlternativesElementsInterface ) => 
       </Typography>
       <List>
         {
-          elements?.map(element => (
-            <Link to={ `/view/${ element.Title }` } key={ element.Title }>
-              <ListItem alignItems="flex-start">
-
-                <ListItemAvatar>
-                  <Avatar alt={ element.Title } src={ element.Poster.replace('http://', 'https://') } />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={ element.Title }
-                  secondary={
-                    <>
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        color="textPrimary"
-                      >
-                        { element.Title }
-                      </Typography>
-                      { ' ' } - { truncateString(element.Plot, 100) }
-                    </>
-                  }
-                />
-              </ListItem>
-            </Link>
-          ))
+          Object.values(elements.results).map(element => element.results.map(item => <h1>{ item.original_title }</h1>))
         }
       </List>
     </>
@@ -70,3 +88,27 @@ const AlternativesElements = ( { elements }: AlternativesElementsInterface ) => 
 }
 
 export default AlternativesElements
+
+// <Link to={ `/view/${ element.Title }` } key={ element.Title }>
+//   <ListItem alignItems="flex-start">
+//
+//   <ListItemAvatar>
+//   <Avatar alt={ element.Title } src={ element.Poster.replace('http://', 'https://') } />
+// </ListItemAvatar>
+// <ListItemText
+// primary={ element.Title }
+// secondary={
+// <>
+// <Typography
+// component="span"
+// variant="body2"
+// color="textPrimary"
+// >
+// { element.Title }
+// </Typography>
+// { ' ' } - { truncateString(element.Plot, 100) }
+// </>
+// }
+// />
+// </ListItem>
+// </Link>

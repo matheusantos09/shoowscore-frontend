@@ -32,9 +32,9 @@ function SearchContent() {
     setElement(newInputValue);
   }
 
-  const handleSubmit = async (
+  const handleSubmit = (
     event: React.FormEvent<HTMLFormElement>
-  ): Promise<any> => {
+  ) => {
     event.preventDefault();
     setLoading(true);
 
@@ -68,6 +68,8 @@ function SearchContent() {
               onInputChange={ handleChangeAutoComplete }
 
               fullWidth
+
+              freeSolo
 
               renderInput={ ( params ) => (
                 <TextField

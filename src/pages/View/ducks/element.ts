@@ -1,18 +1,20 @@
 import { createActions, createReducer } from "reduxsauce";
 
-const alternativesElements: unique symbol = Symbol('unique');
-
 interface InitialState {
   loading: boolean;
-  [alternativesElements]?: {};
+  alternativesElements?: {};
   content: {};
   msgError?: string;
 }
 
 export interface TypeAction {
   title: string;
-  element: {};
-  elements?: [];
+  element: {
+    payload: {}
+  };
+  elements: {
+    payload: {}
+  };
   msg?: string;
 }
 
@@ -26,7 +28,7 @@ export const { Types, Creators } = createActions({
 
 const INITIAL_STATE = {
   loading: true,
-  alternativesElements: [],
+  alternativesElements: {},
   content: {},
   msgError: ''
 }
@@ -34,13 +36,13 @@ const INITIAL_STATE = {
 const fetchSuccess = ( state: InitialState = INITIAL_STATE, action: TypeAction ) => ( {
   ...state,
   loading: false,
-  element: action.element
+  element: action.element.payload
 } )
 
 const fetchAlternativeElementSuccess = ( state: InitialState = INITIAL_STATE, action: TypeAction ) => ( {
   ...state,
   loading: false,
-  alternativesElements: action.elements
+  alternativesElements: action.elements.payload
 } )
 
 const fetchError = ( state: InitialState = INITIAL_STATE, action: TypeAction ) => ( {
@@ -49,6 +51,7 @@ const fetchError = ( state: InitialState = INITIAL_STATE, action: TypeAction ) =
   msgError: action.msg
 } )
 
+//@ts-ignore
 export default createReducer(INITIAL_STATE, {
   [Types.FETCH_ELEMENT_SUCCESS]: fetchSuccess,
   [Types.FETCH_ALTERNATIVE_ELEMENTS]: fetchAlternativeElementSuccess,
