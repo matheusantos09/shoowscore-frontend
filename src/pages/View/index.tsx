@@ -23,6 +23,9 @@ const View = () => {
   const [ loading, setLoading ] = useState<boolean>(element.loading)
   const dispatch = useDispatch();
 
+  console.log('elementelementelementelement',element);
+
+
   useEffect(() => {
     dispatch(CreatorsElement.fetchElementSaga(elementName))
   }, [ dispatch, elementName ])

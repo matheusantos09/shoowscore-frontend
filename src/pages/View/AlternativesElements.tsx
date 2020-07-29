@@ -63,8 +63,7 @@ type AlternativesElementsItemInterface = {
 }
 
 const AlternativesElements = ( { elements }: AlternativesElementsItemInterface ) => {
-  console.log('AlternativesElements', ( elements.results ))
-  console.log('OBJECTTTTTTTTTt', Object.values(elements.results))
+  console.log('AlternativesElements', ( elements ))
 
   const { t } = useTranslation();
 
@@ -79,9 +78,9 @@ const AlternativesElements = ( { elements }: AlternativesElementsItemInterface )
         { t('pages.view.manyAlternatives.default') }
       </Typography>
       <List>
-        {
-          Object.values(elements.results).map(element => element.results.map(item => <h1>{ item.original_title }</h1>))
-        }
+        {/*{*/}
+        {/*  Object.values(elements.results).map(element => element.results.map(item => <h1>{ item.original_title }</h1>))*/}
+        {/*}*/}
       </List>
     </>
   )
