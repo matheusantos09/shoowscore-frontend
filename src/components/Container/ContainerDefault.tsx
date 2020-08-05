@@ -26,7 +26,8 @@ const useStyles = makeStyles(( theme ) => ( {
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
+    marginTop: 64
   },
 } ));
 
@@ -52,7 +53,7 @@ let theme = createMuiTheme({
 
 theme = responsiveFontSizes(theme);
 
-function ContainerDefault() {
+function ContainerDefault () {
   const classes = useStyles();
 
   return (
@@ -71,24 +72,21 @@ function ContainerDefault() {
 
       <MuiThemeProvider theme={ theme }>
         <BrowserRouter>
-
           <div className={ classes.root }>
             <CssBaseline />
 
             <Header />
 
             <main className={ classes.content }>
-
-              <div className={ classes.toolbar } />
+              {/*<div className={ classes.toolbar } />*/ }
 
               <Routes />
 
               <Footer />
-
             </main>
+
           </div>
         </BrowserRouter>
-
       </MuiThemeProvider>
     </>
   );

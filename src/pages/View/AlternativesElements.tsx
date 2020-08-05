@@ -78,9 +78,9 @@ const AlternativesElements = ( { elements }: AlternativesElementsItemInterface )
         { t('pages.view.manyAlternatives.default') }
       </Typography>
       <List>
-        {/*{*/}
-        {/*  Object.values(elements.results).map(element => element.results.map(item => <h1>{ item.original_title }</h1>))*/}
-        {/*}*/}
+        {/*{*/ }
+        {/*  Object.values(elements.results).map(element => element.results.map(item => <h1>{ item.original_title }</h1>))*/ }
+        {/*}*/ }
       </List>
     </>
   )

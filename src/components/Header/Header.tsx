@@ -45,6 +45,7 @@ const useStyles = makeStyles(( theme ) => ( {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    boxShadow: 'unset'
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -76,7 +77,7 @@ const useStyles = makeStyles(( theme ) => ( {
   }
 } ));
 
-function Header() {
+function Header () {
   const { t } = useTranslation();
   const classes = useStyles();
   const [ flag, setFlag ] = useState<string>('en');
