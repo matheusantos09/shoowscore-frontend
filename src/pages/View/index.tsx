@@ -23,7 +23,7 @@ const View = () => {
   const [ loading, setLoading ] = useState<boolean>(element.loading)
   const dispatch = useDispatch();
 
-  console.log('elementelementelementelement',element);
+  console.log('View element',element);
 
 
   useEffect(() => {
