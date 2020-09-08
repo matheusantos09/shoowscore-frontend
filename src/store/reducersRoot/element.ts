@@ -2,7 +2,7 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux'
 
 interface RootState {
   element: {
-    loading: true,
+    loading: true;
     alternativesElements: {
       query: string;
       results: {
@@ -47,13 +47,13 @@ interface RootState {
           }[];
           total_pages: number;
           total_results: number;
-        }
+        };
       };
-      expiresAt: string
-    },
-    element: [],
-    content: {},
-    msgError: ''
+      expiresAt: string;
+    };
+    element: [];
+    content: {};
+    msgError: '';
   }
 }
 
