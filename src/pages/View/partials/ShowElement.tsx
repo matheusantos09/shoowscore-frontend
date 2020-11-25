@@ -1,7 +1,6 @@
 import React from "react"
 
-function ShowElement() {
-
+const ShowElement: React.FC = () => {
   return (
     <h1>
       ShowElement

@@ -9,9 +9,9 @@ store.subscribe(() => {
   console.log('STATE REDUX', store.getState())
 })
 
-function App() {
+const App: React.FC = () => {
   return (
-    <Provider store={ store }>
+    <Provider store={store}>
       <ContainerDefault />
     </Provider>
   );

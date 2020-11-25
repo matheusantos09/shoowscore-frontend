@@ -1,4 +1,4 @@
-import { TypedUseSelectorHook, useSelector } from 'react-redux'
+import {TypedUseSelectorHook, useSelector} from 'react-redux'
 
 interface RootState {
   element: {
@@ -52,6 +52,7 @@ interface RootState {
       expiresAt: string;
     };
     element: [];
+    // eslint-disable-next-line @typescript-eslint/ban-types
     content: {};
     msgError: '';
   }

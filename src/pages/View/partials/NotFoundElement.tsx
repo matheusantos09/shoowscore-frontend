@@ -1,7 +1,6 @@
 import React from "react"
 
-function NotFoundElement() {
-
+const NotFoundElement: React.FC = () => {
   return (
     <h1>Conteudo não encontrado</h1>
   )

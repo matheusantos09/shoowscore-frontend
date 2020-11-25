@@ -1,5 +1,5 @@
 import React from "react"
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
@@ -55,10 +55,10 @@ type AlternativesElementsItemInterface = {
   }
 }
 
-const AlternativesElements = ( { elements }: AlternativesElementsItemInterface ) => {
+const AlternativesElements = ({elements}: AlternativesElementsItemInterface): any => {
   console.log('AlternativesElements', elements)
 
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
     <>
@@ -68,39 +68,15 @@ const AlternativesElements = ( { elements }: AlternativesElementsItemInterface )
         align="center"
         color="textPrimary"
       >
-        { t('pages.view.manyAlternatives.default') }
+        {t('pages.view.manyAlternatives.default')}
       </Typography>
       <List>
-        {/*{*/ }
-        {/*  Object.values(elements.results).map(element => element.results.map(item => <h1>{ item.original_title }</h1>))*/ }
-        {/*}*/ }
+        {
+          Object.values(elements.results).map(element => element.results.map(item => <h1>{item.original_title}</h1>))
+        }
       </List>
     </>
   )
 }
 
 export default AlternativesElements
-
-// <Link to={ `/view/${ element.Title }` } key={ element.Title }>
-//   <ListItem alignItems="flex-start">
-//
-//   <ListItemAvatar>
-//   <Avatar alt={ element.Title } src={ element.Poster.replace('http://', 'https://') } />
-// </ListItemAvatar>
-// <ListItemText
-// primary={ element.Title }
-// secondary={
-// <>
-// <Typography
-// component="span"
-// variant="body2"
-// color="textPrimary"
-// >
-// { element.Title }
-// </Typography>
-// { ' ' } - { truncateString(element.Plot, 100) }
-// </>
-// }
-// />
-// </ListItem>
-// </Link>

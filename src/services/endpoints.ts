@@ -1,5 +1,5 @@
 import apiDataBase from "./api";
 
-export function fetchElementByTitle( title: string ) {
-  return apiDataBase.get(`/search/${ encodeURI(title) }`)
+export function fetchElementByTitle(title: string): any {
+  return apiDataBase.get(`/search/${encodeURI(title)}`)
 }

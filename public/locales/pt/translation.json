@@ -25,7 +25,7 @@
     }
   },
   "phrase": {
-    "search-content": "Watch about series or movie",
+    "search-content": "Watch about series or movie222222222",
     "loading": "Loading"
   },
   "button": {
@@ -33,9 +33,21 @@
   },
   "api": {
     "errors": {
-      "timeout": "Desculpe mas parece que estamos com uma lentidão na busca de seu conteúdo",
-      "code300": "Desculpe mas não possivel carregar seus dados",
-      "fatal": "Desculpe mas não possivel carregar seus dados"
+      "timeout": "Sorry but it seems that we are slow to find your content",
+      "code300": "Sorry but unable to load your data",
+      "fatal": "Sorry but unable to load your data"
+    }
+  },
+  "pages": {
+    "view": {
+      "manyAlternatives": {
+        "default": "Select 1 movie/tv show to continue"
+      }
+    },
+    "index": {
+      "validation": {
+        "fill-search": "Fill the title of content"
+      }
     }
   }
 }

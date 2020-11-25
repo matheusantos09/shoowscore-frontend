@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 
 import './i18n'
@@ -10,7 +10,7 @@ import MainSpinner from "./components/Spinners/MainSpinner";
 const App = React.lazy(() => import('./App'));
 
 ReactDOM.render(
-  <Suspense fallback={ MainSpinner }>
+  <Suspense fallback={MainSpinner}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

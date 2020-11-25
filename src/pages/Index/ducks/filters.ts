@@ -1,4 +1,4 @@
-import { createActions, createReducer } from "reduxsauce";
+import {createActions, createReducer} from "reduxsauce";
 
 interface InitialState {
   type: string;
@@ -13,11 +13,11 @@ interface FilterNameElement {
   name: string
 }
 
-export const { Types, Creators } = createActions({
-  filterType: [ 'type' ],
-  filterTypeSaga: [ 'type' ],
-  filterNameElement: [ 'name' ],
-  filterNameElementSaga: [ 'name' ],
+export const {Types, Creators} = createActions({
+  filterType: ['type'],
+  filterTypeSaga: ['type'],
+  filterNameElement: ['name'],
+  filterNameElementSaga: ['name'],
 });
 
 const INITIAL_STATE = {
@@ -25,14 +25,14 @@ const INITIAL_STATE = {
   name: ''
 }
 
-const setFilterType = ( state: InitialState = INITIAL_STATE, action: FilterTypeAction ) => {
+const setFilterType = (state: InitialState = INITIAL_STATE, action: FilterTypeAction): any => {
   return {
     ...state,
     type: action.type
   }
 }
 
-const setFilterNameElement = ( state: InitialState = INITIAL_STATE, action: FilterNameElement ) => {
+const setFilterNameElement = (state: InitialState = INITIAL_STATE, action: FilterNameElement): any => {
   return {
     ...state,
     name: action.name

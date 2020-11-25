@@ -2,11 +2,11 @@ import React from 'react';
 
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 
 import SearchContent from "./SearchContent";
 
-const useStyles = makeStyles(( theme ) => ( {
+const useStyles = makeStyles((theme) => ({
   contentGrid: {
     padding: theme.spacing(0, 4),
     // margin: theme.spacing(2, 0),
@@ -23,18 +23,18 @@ const useStyles = makeStyles(( theme ) => ( {
     alignItems: 'center',
     minHeight: 'calc(100vh - 64px)'
   }
-} ));
+}));
 
-const Index = () => {
+const Index: React.FC = () => {
   const classes = useStyles();
 
   return (
     <>
-      <div className={ classes.main }>
-        <Container className={ classes.grid }>
+      <div className={classes.main}>
+        <Container className={classes.grid}>
           <Grid>
 
-            <Grid item className={ classes.contentGrid }>
+            <Grid item className={classes.contentGrid}>
               <SearchContent />
             </Grid>
 

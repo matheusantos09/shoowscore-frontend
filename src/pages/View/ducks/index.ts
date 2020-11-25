@@ -1,15 +1,16 @@
-import { all, call, delay, put, race, takeLatest } from "redux-saga/effects";
+import {all, call, delay, put, race, takeLatest} from "redux-saga/effects";
 
-import { Creators as CreatorsElement, TypeAction as ElementTypeAction, Types as TypesElement } from './element'
-import { fetchElementByTitle } from "../../../services/endpoints";
+import {Creators as CreatorsElement, TypeAction as ElementTypeAction, Types as TypesElement} from './element'
+import {fetchElementByTitle} from "../../../services/endpoints";
 import i18n from '../../../i18n'
 
 const TIMEOUT = 20000;
 
-function* sagaFetchElement ( action: ElementTypeAction ) {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+function* sagaFetchElement(action: ElementTypeAction) {
 
   try {
-    const { response, timeout } = yield race({
+    const {response, timeout} = yield race({
       response: call(fetchElementByTitle, action.title),
       timeout: delay(TIMEOUT)
     });
@@ -36,7 +37,7 @@ function* sagaFetchElement ( action: ElementTypeAction ) {
   }
 }
 
-export default function* rootSaga () {
+export default function* rootSaga() {
   return yield all([
     // @ts-ignore
     yield takeLatest(TypesElement.FETCH_ELEMENT_SAGA, sagaFetchElement),

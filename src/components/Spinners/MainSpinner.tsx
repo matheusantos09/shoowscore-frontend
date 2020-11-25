@@ -1,6 +1,6 @@
 import React from "react";
 
-const MainSpinner = () => {
+const MainSpinner: React.FC = () => {
   return <h1>Carregando...</h1>
 }
 
