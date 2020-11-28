@@ -71,53 +71,55 @@ const QuizSuggestion: React.FC = () => {
     // history.push(`/view/${ type }/${ element }`)
   }
 
-  return <form action="" onSubmit={handleSubmit}>
-    <Grid container spacing={4}>
-      <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="select-outlined-label">{t('types_collection.default')}</InputLabel>
-          <Select
-            labelId="select-outlined-label"
-            id="select-outlined"
-            value={type}
-            onChange={handleChange}
-            label={t('types_collection.default')}
-          >
-            {
+  return (
+    <form action="" onSubmit={handleSubmit}>
+      <Grid container spacing={4}>
+        <Grid item xs={4}>
+          <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel id="select-outlined-label">{t('types_collection.default')}</InputLabel>
+            <Select
+              labelId="select-outlined-label"
+              id="select-outlined"
+              value={type}
+              onChange={handleChange}
+              label={t('types_collection.default')}
+            >
+              {
               site.types_collection.map(item => (
                 <MenuItem key={String(item.value)} value={item.value}>{t(`types_collection.${item.key}`)}</MenuItem>
               ))
             }
-          </Select>
-        </FormControl>
-      </Grid>
+            </Select>
+          </FormControl>
+        </Grid>
 
-      <Grid item xs={8}>
+        <Grid item xs={8}>
 
-        <Autocomplete
-          freeSolo
-          disableClearable
+          <Autocomplete
+            freeSolo
+            disableClearable
           // getOptionSelected={ ( option, value ) => option.title === value.title }
-          options={options.map((option) => option.title)}
+            options={options.map((option) => option.title)}
 
-          //@ts-ignore
-          onInputChange={handleChangeAutoComplete}
+          // @ts-ignore
+            onInputChange={handleChangeAutoComplete}
 
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              style={{margin: 0}}
-              label={t('inputs.search_data')}
-              margin="normal"
-              variant="outlined"
-              InputProps={{...params.InputProps, type: 'search'}}
-            />
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                style={{margin: 0}}
+                label={t('inputs.search_data')}
+                margin="normal"
+                variant="outlined"
+                InputProps={{...params.InputProps, type: 'search'}}
+              />
           )}
-        />
+          />
 
+        </Grid>
       </Grid>
-    </Grid>
-  </form>
+    </form>
+)
 }
 
 export default QuizSuggestion

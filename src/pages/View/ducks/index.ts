@@ -37,9 +37,8 @@ function* sagaFetchElement(action: ElementTypeAction) {
   }
 }
 
-export default function* rootSaga() {
+export default function* rootSaga(): any {
   return yield all([
-    // @ts-ignore
     yield takeLatest(TypesElement.FETCH_ELEMENT_SAGA, sagaFetchElement),
   ])
 }

@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 
-import ContainerDefault from "./components/Container/ContainerDefault";
+import Index from "./components/Container";
 
 store.subscribe(() => {
   console.log('STATE REDUX', store.getState())
@@ -12,7 +12,7 @@ store.subscribe(() => {
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <ContainerDefault />
+      <Index />
     </Provider>
   );
 }

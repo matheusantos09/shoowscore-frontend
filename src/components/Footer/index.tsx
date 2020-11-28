@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Footer: React.FC = () => {
+const Index: React.FC = () => {
   const {t} = useTranslation();
   const classes = useStyles();
 
@@ -32,4 +32,4 @@ const Footer: React.FC = () => {
   )
 }
 
-export default Footer
+export default Index

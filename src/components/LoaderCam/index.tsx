@@ -16,4 +16,4 @@ const LoaderCam: React.FC = () => {
   )
 }
 
-export default LoaderCam
+export default LoaderCam;

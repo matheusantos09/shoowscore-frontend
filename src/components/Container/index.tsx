@@ -9,8 +9,8 @@ import {createMuiTheme, makeStyles, MuiThemeProvider, responsiveFontSizes} from 
 import {BrowserRouter} from "react-router-dom";
 
 import Routes from "../../Routes";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../Header";
+import Footer from "../Footer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +53,7 @@ let theme = createMuiTheme({
 
 theme = responsiveFontSizes(theme);
 
-const ContainerDefault: React.FC = () => {
+const Container: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -92,4 +92,4 @@ const ContainerDefault: React.FC = () => {
   );
 }
 
-export default ContainerDefault
+export default Container;

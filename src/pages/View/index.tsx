@@ -14,9 +14,9 @@ import NotFoundElement from "./partials/NotFoundElement";
 import ShowElement from "./partials/ShowElement";
 import ErrorMessage from "../../components/Alert/ErrorMessage";
 
-const View = () => {
-
-  let {elementName} = useParams();
+const View: React.FC = () => {
+  // let {elementName} = useParams();
+  let elementName = '';
   elementName = decodeURIComponent(elementName);
 
   const element = useElementSelector(state => state.element)
@@ -39,21 +39,21 @@ const View = () => {
         <main>
           <Container maxWidth="sm">
 
-            {/*Loading*/}
+            {/* Loading */}
             {loading && <LoaderCam />}
 
-            {/*Alternative Content*/}
+            {/* Alternative Content */}
             {(!loading && !_.isEmpty(element.alternativesElements)) ?
               <AlternativesElements elements={element.alternativesElements} /> : null}
 
-            {/*Not found*/}
+            {/* Not found */}
             {(!loading && _.isEmpty(element.alternativesElements) && !element.element.length) ?
               <NotFoundElement /> : null}
 
-            {/*Content finded*/}
+            {/* Content finded */}
             {(!loading && _.isEmpty(element.alternativesElements) && element.element.length) ? <ShowElement /> : null}
 
-            {/*Msg error*/}
+            {/* Msg error */}
             {element.msgError ? <ErrorMessage message={element.msgError} /> : ''}
 
           </Container>

@@ -20,28 +20,29 @@ const suggestion = [
   {title: '12 Angry Men'},
 ];
 
-function SearchContent() {
-
+const SearchContent: React.FC = () => {
   const {t} = useTranslation();
   const [options] = useState<OptionInterface[]>(suggestion);
   const [element, setElement] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [redirect, setRedirect] = useState<boolean>(false);
 
-  const handleChangeAutoComplete = (event: any, newInputValue: string) => {
+  const handleChangeAutoComplete = (event: any, newInputValue: string): any => {
     setElement(newInputValue);
   }
 
   const handleSubmit = (
     event: React.FormEvent<HTMLFormElement>
-  ) => {
+  ): void => {
     event.preventDefault();
     setLoading(true);
 
     if (element === '') {
       setLoading(false);
 
-      return toastError(t('pages.index.validation.fill-search'));
+      toastError(t('pages.index.validation.fill-search'));
+
+      return;
     }
 
     setRedirect(true);
@@ -63,14 +64,9 @@ function SearchContent() {
             <Autocomplete
               // getOptionSelected={ ( option, value ) => option.title === value.title }
               options={options.map((option) => option.title)}
-
-              //@ts-ignore
               onInputChange={handleChangeAutoComplete}
-
               fullWidth
-
               freeSolo
-
               renderInput={(params) => (
                 <TextField
                   {...params}

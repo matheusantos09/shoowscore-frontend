@@ -77,12 +77,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Header: React.FC = () => {
+const Index: React.FC = () => {
   const {t} = useTranslation();
   const classes = useStyles();
   const [flag, setFlag] = useState<string>('en');
 
-  const changeLanguage = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const changeLanguage = (event: React.ChangeEvent<{ value: unknown }>): any => {
     const languageSelected = event.target.value as string;
 
     setFlag(languageSelected);
@@ -110,10 +110,20 @@ const Header: React.FC = () => {
                 value={flag}
                 onChange={changeLanguage}
               >
-                <MenuItem selected value="en"><img className={classes.selectImg} src={enENFlag}
-                                                   alt={t('inputs.change_language.flags.enEN')} /></MenuItem>
-                <MenuItem value="pt"><img className={classes.selectImg} src={ptBRFlag}
-                                          alt={t('inputs.change_language.flags.ptBR')} /></MenuItem>
+                <MenuItem selected value="en">
+                  <img
+                    className={classes.selectImg}
+                    src={enENFlag}
+                    alt={t('inputs.change_language.flags.enEN')}
+                  />
+                </MenuItem>
+                <MenuItem value="pt">
+                  <img
+                    className={classes.selectImg}
+                    src={ptBRFlag}
+                    alt={t('inputs.change_language.flags.ptBR')}
+                  />
+                </MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -123,4 +133,4 @@ const Header: React.FC = () => {
   )
 }
 
-export default Header
+export default Index

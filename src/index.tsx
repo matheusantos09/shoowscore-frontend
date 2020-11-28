@@ -5,12 +5,12 @@ import './i18n'
 
 import 'typeface-roboto';
 
-import MainSpinner from "./components/Spinners/MainSpinner";
+import Index from "./components/MainSpinner";
 
 const App = React.lazy(() => import('./App'));
 
 ReactDOM.render(
-  <Suspense fallback={MainSpinner}>
+  <Suspense fallback={Index}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
