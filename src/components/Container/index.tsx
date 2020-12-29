@@ -15,6 +15,7 @@ import Footer from "../Footer";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    height: '100%'
   },
   toolbar: {
     display: 'flex',
@@ -22,24 +23,35 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
+    // ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
-    // padding: theme.spacing(3),
-    marginTop: 64
-  },
+    padding: theme.spacing(4, 2),
+    margin: '64px auto 0 auto',
+    maxWidth: '1336px',
+  }
 }));
 
 let theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          WebkitFontSmoothing: 'auto',
+        },
+        body: {
+          minHeight: '100vh',
+          width: '100%'
+        }
+      },
+    },
+  },
   typography: {
     fontFamily: [
+      'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
       'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
@@ -69,22 +81,18 @@ const Container: React.FC = () => {
         draggable
         pauseOnHover
       />
-
       <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+
         <BrowserRouter>
           <div className={classes.root}>
-            <CssBaseline />
-
             <Header />
 
             <main className={classes.content}>
-              {/* <div className={ classes.toolbar } /> */}
-
               <Routes />
 
               <Footer />
             </main>
-
           </div>
         </BrowserRouter>
       </MuiThemeProvider>

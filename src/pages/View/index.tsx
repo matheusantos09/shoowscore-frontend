@@ -2,62 +2,65 @@ import React, {useEffect, useState} from "react";
 import _ from 'lodash'
 
 import {useDispatch} from "react-redux";
-import Container from "@material-ui/core/Container";
-import {useParams} from "react-router";
+import {useHistory, useParams} from "react-router";
 
 import {Creators as CreatorsElement} from './ducks/element'
 
 import LoaderCam from "../../components/LoaderCam";
-import {useElementSelector} from "../../store/reducersRoot/element";
-import AlternativesElements from "./AlternativesElements";
-import NotFoundElement from "./partials/NotFoundElement";
-import ShowElement from "./partials/ShowElement";
 import ErrorMessage from "../../components/Alert/ErrorMessage";
 
+import {useElementSelector} from "../../store/reducersRoot/element";
+
+import ShowElement from "./partials/ShowElement";
+import NotFoundElement from "./partials/NotFoundElement";
+
+interface UrlParams {
+  elementName: string;
+}
+
 const View: React.FC = () => {
-  // let {elementName} = useParams();
-  let elementName = '';
+  let {elementName} = useParams<UrlParams>();
   elementName = decodeURIComponent(elementName);
 
-  const element = useElementSelector(state => state.element)
-  const [loading, setLoading] = useState<boolean>(element.loading)
+  const elementView = useElementSelector(state => state.element)
+  const [loading, setLoading] = useState<boolean>(elementView.loading)
   const dispatch = useDispatch();
-
-  console.log('View element', element);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(CreatorsElement.fetchElementSaga(elementName))
-  }, [dispatch, elementName])
+  }, [dispatch, elementName]);
 
   useEffect(() => {
-    setLoading(element.loading)
-  }, [element.loading])
+    setLoading(elementView.loading)
+  }, [elementView.loading]);
+
+  if (!loading && !elementView.error && !_.isEmpty(elementView.alternativesElements.results)) {
+    history.push(`/search/${encodeURIComponent(elementName)}`);
+  }
 
   return (
     <>
       <div>
-        <main>
-          <Container maxWidth="sm">
+        {/* Loading */}
+        {loading && <LoaderCam />}
 
-            {/* Loading */}
-            {loading && <LoaderCam />}
+        {/* Alternative Content
+              {(!loading && !elementView.error && !_.isEmpty(elementView.alternativesElements.results)) ?
+                // @ts-ignore
+                <AlternativesElements payload={elementView.alternativesElements} /> : null}
+            */}
 
-            {/* Alternative Content */}
-            {(!loading && !_.isEmpty(element.alternativesElements)) ?
-              <AlternativesElements elements={element.alternativesElements} /> : null}
+        {/* Not found */}
+        {(!loading && !elementView.error && _.isEmpty(elementView.alternativesElements) && !elementView.element.length) ?
+          <NotFoundElement /> : null}
 
-            {/* Not found */}
-            {(!loading && _.isEmpty(element.alternativesElements) && !element.element.length) ?
-              <NotFoundElement /> : null}
+        {/* Content finded */}
+        {(!loading && !elementView.error && _.isEmpty(elementView.alternativesElements) && elementView.element.length) ?
+          <ShowElement /> : null}
 
-            {/* Content finded */}
-            {(!loading && _.isEmpty(element.alternativesElements) && element.element.length) ? <ShowElement /> : null}
-
-            {/* Msg error */}
-            {element.msgError ? <ErrorMessage message={element.msgError} /> : ''}
-
-          </Container>
-        </main>
+        {/* Msg error */}
+        {(!loading && elementView.error) ? <ErrorMessage message={elementView.msgError} /> : ''}
       </div>
     </>
   )

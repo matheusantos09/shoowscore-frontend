@@ -5,56 +5,32 @@ interface RootState {
     loading: true;
     alternativesElements: {
       query: string;
+      total_results: number;
       results: {
-        tv: {
-          page: number;
-          results: {
-            adult: boolean;
-            backdrop_path: null;
-            genre_ids: [];
-            id: number;
-            original_language: string;
-            original_title: string;
-            overview: string;
-            popularity: number
-            poster_path: string;
-            release_date: string;
-            title: string;
-            video: boolean;
-            vote_average: number;
-            vote_count: number;
-          }[];
-          total_pages: number;
-          total_results: number;
-        };
-        movie: {
-          page: number;
-          results: {
-            adult: boolean;
-            backdrop_path: null;
-            genre_ids: [];
-            id: number;
-            original_language: string;
-            original_title: string;
-            overview: string;
-            popularity: number
-            poster_path: string;
-            release_date: string;
-            title: string;
-            video: boolean;
-            vote_average: number;
-            vote_count: number;
-          }[];
-          total_pages: number;
-          total_results: number;
-        };
+        type: string;
+        results: {
+          adult: boolean;
+          // backdrop_path: null;
+          genre_ids: [];
+          id: number;
+          // original_language: string;
+          original_title: string;
+          overview: string;
+          popularity: number
+          poster_path: string;
+          // release_date: string;
+          title: string;
+          // video: boolean;
+          vote_average: number;
+          vote_count: number;
+        }[];
       };
       expiresAt: string;
     };
     element: [];
-    // eslint-disable-next-line @typescript-eslint/ban-types
     content: {};
     msgError: '';
+    error: boolean;
   }
 }
 

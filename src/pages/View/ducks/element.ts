@@ -2,18 +2,22 @@ import {createActions, createReducer} from "reduxsauce";
 
 interface InitialState {
   loading: boolean;
-  alternativesElements?: {};  // eslint-disable-line @typescript-eslint/ban-types
-  content: {}; // eslint-disable-line @typescript-eslint/ban-types
+  alternativesElements?: {
+    type: string;
+    results: {}[]
+  };
+  content: {};
   msgError?: string;
+  error: boolean;
 }
 
 export interface TypeAction {
   title: string;
   element: {
-    payload: {}; // eslint-disable-line @typescript-eslint/ban-types
+    payload: {};
   };
   elements: {
-    payload: {}; // eslint-disable-line @typescript-eslint/ban-types
+    payload: {};
   };
   msg?: string;
 }
@@ -28,26 +32,34 @@ export const {Types, Creators} = createActions({
 
 const INITIAL_STATE = {
   loading: true,
-  alternativesElements: {},
+  alternativesElements: {
+    type: '',
+    results: [{}]
+  },
   content: {},
-  msgError: ''
+  error: false,
+  msgError: '',
 }
 
 const fetchSuccess = (state: InitialState = INITIAL_STATE, action: TypeAction): any => ({
   ...state,
   loading: false,
+  error: false,
   element: action.element.payload
 })
 
 const fetchAlternativeElementSuccess = (state: InitialState = INITIAL_STATE, action: TypeAction): any => ({
   ...state,
   loading: false,
+  error: false,
   alternativesElements: action.elements.payload
 })
 
 const fetchError = (state: InitialState = INITIAL_STATE, action: TypeAction): any => ({
   ...state,
-  loading: true,
+  loading: false,
+  element: [],
+  error: true,
   msgError: action.msg
 })
 

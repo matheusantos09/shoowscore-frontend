@@ -1,13 +1,14 @@
 {
   "site": {
-    "name": "ScoreShoow",
+    "name": "ShoowScore",
     "description": "Finding what you wanted to watch on your night",
     "shortDescription": "Find the not found"
   },
   "types_collection": {
     "default": "Types",
     "tv_show": "TV Show",
-    "movie": "Movies"
+    "movie": "Movies",
+    "tv": "TV Show"
   },
   "inputs": {
     "search_data": "Enter a name for search",
@@ -49,5 +50,8 @@
         "fill-search": "Fill the title of content"
       }
     }
+  },
+  "tags": {
+    "coming_soon": "Coming Soon"
   }
 }

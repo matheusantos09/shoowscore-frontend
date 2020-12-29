@@ -6,9 +6,7 @@ import i18n from '../../../i18n'
 
 const TIMEOUT = 20000;
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function* sagaFetchElement(action: ElementTypeAction) {
-
+function* sagaFetchElement(action: ElementTypeAction): any {
   try {
     const {response, timeout} = yield race({
       response: call(fetchElementByTitle, action.title),
@@ -39,6 +37,7 @@ function* sagaFetchElement(action: ElementTypeAction) {
 
 export default function* rootSaga(): any {
   return yield all([
+    // @ts-ignore
     yield takeLatest(TypesElement.FETCH_ELEMENT_SAGA, sagaFetchElement),
   ])
 }

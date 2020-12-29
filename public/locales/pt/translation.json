@@ -1,13 +1,14 @@
 {
   "site": {
-    "name": "ScoreShoow",
+    "name": "ShoowScore",
     "description": "Finding what you wanted to watch on your night",
     "shortDescription": "Find the not found"
   },
   "types_collection": {
     "default": "Types",
     "tv_show": "TV Show",
-    "movie": "Movies"
+    "tv": "TV Show TYPE",
+    "movie": "Movies TYPE"
   },
   "inputs": {
     "search_data": "Enter a name for search",

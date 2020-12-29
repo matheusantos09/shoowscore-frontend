@@ -1,8 +1,6 @@
 import React, {useState} from "react"
 import {useTranslation} from "react-i18next";
 import {Redirect} from "react-router";
-
-import Grid from "@material-ui/core/Grid";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -12,12 +10,13 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import {OptionInterface} from "../../Interfaces/ComboBox";
 import {toastError} from "../../helpers/toastCustom";
 
+import {Form} from './styles'
+
 const suggestion = [
-  {title: 'The Shawshank Redemption'},
-  {title: 'The Godfather'},
-  {title: 'The Godfather: Part II'},
-  {title: 'The Dark Knight'},
-  {title: '12 Angry Men'},
+  {title: 'How i met your mother'},
+  {title: 'Breaking Bad'},
+  {title: 'Avatar'},
+  {title: 'Matrix'},
 ];
 
 const SearchContent: React.FC = () => {
@@ -57,43 +56,34 @@ const SearchContent: React.FC = () => {
       <Typography component="h2" variant="h3" align="center" color="textPrimary" gutterBottom>
         {t('phrase.search-content')}
       </Typography>
-      <form action="" onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={10}>
+      <Form onSubmit={handleSubmit}>
 
-            <Autocomplete
-              // getOptionSelected={ ( option, value ) => option.title === value.title }
-              options={options.map((option) => option.title)}
-              onInputChange={handleChangeAutoComplete}
-              fullWidth
-              freeSolo
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  style={{margin: 0}}
-                  label={t('inputs.search_data')}
-                  margin="normal"
-                  variant="outlined"
-                  InputProps={{...params.InputProps, type: 'search'}}
-                />
-              )}
+        <Autocomplete
+          // getOptionSelected={ ( option, value ) => option.title === value.title }
+          options={options.map((option) => option.title)}
+          onInputChange={handleChangeAutoComplete}
+          fullWidth
+          freeSolo
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              style={{margin: 0}}
+              label={t('inputs.search_data')}
+              margin="normal"
+              variant="outlined"
+              InputProps={{...params.InputProps, type: 'search'}}
             />
+          )}
+        />
 
-          </Grid>
-          <Grid item xs={2}>
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              size="large"
-              style={{height: "100%"}}
-              type="submit"
-            >
-              {loading ? <CircularProgress color="inherit" size={30} /> : t('button.search')}
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+        >
+          {loading ? <CircularProgress color="inherit" size={30} /> : t('button.search')}
+        </Button>
+      </Form>
     </>
   )
 }
