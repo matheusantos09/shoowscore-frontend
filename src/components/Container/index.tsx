@@ -1,21 +1,26 @@
 import React from 'react';
 
-import {ToastContainer} from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {createMuiTheme, makeStyles, MuiThemeProvider, responsiveFontSizes} from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  makeStyles,
+  MuiThemeProvider,
+  responsiveFontSizes,
+} from '@material-ui/core/styles';
 
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 
-import Routes from "../../Routes";
-import Header from "../Header";
-import Footer from "../Footer";
+import Routes from '../../Routes';
+import Header from '../Header';
+import Footer from '../Footer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    height: '100%'
+    height: '100%',
   },
   toolbar: {
     display: 'flex',
@@ -30,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4, 2),
     margin: '64px auto 0 auto',
     maxWidth: '1336px',
-  }
+  },
 }));
 
 let theme = createMuiTheme({
@@ -42,8 +47,8 @@ let theme = createMuiTheme({
         },
         body: {
           minHeight: '100vh',
-          width: '100%'
-        }
+          width: '100%',
+        },
       },
     },
   },
@@ -59,7 +64,7 @@ let theme = createMuiTheme({
     ].join(','),
   },
   palette: {
-    type: "dark",
+    type: 'dark',
   },
 });
 
@@ -98,6 +103,6 @@ const Container: React.FC = () => {
       </MuiThemeProvider>
     </>
   );
-}
+};
 
 export default Container;

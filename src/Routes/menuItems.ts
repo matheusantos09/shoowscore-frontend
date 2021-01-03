@@ -1,3 +1,1 @@
-export const menuItems = [
-  {}
-];
+export const menuItems = [{}];

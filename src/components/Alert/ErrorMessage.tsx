@@ -1,10 +1,10 @@
-import React from "react";
-import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import React from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 
 type Props = {
   message: string;
-}
+};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,14 +21,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const ErrorMessage: React.FC<Props> = ({message}) => {
+const ErrorMessage: React.FC<Props> = ({ message }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Alert severity="error">{message}</Alert>
     </div>
-  )
-}
+  );
+};
 
-export default ErrorMessage
+export default ErrorMessage;

@@ -1,4 +1,4 @@
-import {createActions, createReducer} from "reduxsauce";
+import { createActions, createReducer } from 'reduxsauce';
 
 interface InitialState {
   type: string;
@@ -6,14 +6,14 @@ interface InitialState {
 }
 
 export interface FilterTypeAction {
-  type: string
+  type: string;
 }
 
 interface FilterNameElement {
-  name: string
+  name: string;
 }
 
-export const {Types, Creators} = createActions({
+export const { Types, Creators } = createActions({
   filterType: ['type'],
   filterTypeSaga: ['type'],
   filterNameElement: ['name'],
@@ -22,24 +22,30 @@ export const {Types, Creators} = createActions({
 
 const INITIAL_STATE = {
   type: '',
-  name: ''
-}
+  name: '',
+};
 
-const setFilterType = (state: InitialState = INITIAL_STATE, action: FilterTypeAction): any => {
+const setFilterType = (
+  state: InitialState = INITIAL_STATE,
+  action: FilterTypeAction,
+): any => {
   return {
     ...state,
-    type: action.type
-  }
-}
+    type: action.type,
+  };
+};
 
-const setFilterNameElement = (state: InitialState = INITIAL_STATE, action: FilterNameElement): any => {
+const setFilterNameElement = (
+  state: InitialState = INITIAL_STATE,
+  action: FilterNameElement,
+): any => {
   return {
     ...state,
-    name: action.name
-  }
-}
+    name: action.name,
+  };
+};
 
 export default createReducer(INITIAL_STATE, {
   [Types.FILTER_TYPE]: setFilterType,
   [Types.FILTER_NAME_ELEMENT]: setFilterNameElement,
-})
+});

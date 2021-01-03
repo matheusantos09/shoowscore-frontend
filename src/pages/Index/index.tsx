@@ -1,7 +1,7 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
-import SearchContent from "./SearchContent";
+import SearchContent from './SearchContent';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     display: 'flex',
     alignItems: 'center',
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 }));
 
 const Index: React.FC = () => {
@@ -22,7 +22,7 @@ const Index: React.FC = () => {
         <SearchContent />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

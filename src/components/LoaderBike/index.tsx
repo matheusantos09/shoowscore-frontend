@@ -1,5 +1,5 @@
-import React from "react";
-import {LoaderContainer} from "./styles";
+import React from 'react';
+import { LoaderContainer } from './styles';
 
 const LoaderBike: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const LoaderBike: React.FC = () => {
         <div id="bike" className="centerBike" />
       </div>
     </LoaderContainer>
-  )
-}
+  );
+};
 
-export default LoaderBike
+export default LoaderBike;

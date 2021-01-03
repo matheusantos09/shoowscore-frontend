@@ -1,19 +1,19 @@
-import React, {useState} from "react";
-import {useTranslation} from "react-i18next";
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import {makeStyles} from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import ptBRFlag from '../../assets/images/flags/ptBR.svg'
-import enENFlag from '../../assets/images/flags/enEN.svg'
+import ptBRFlag from '../../assets/images/flags/ptBR.svg';
+import enENFlag from '../../assets/images/flags/enEN.svg';
 
 const drawerWidth = 240;
 
@@ -27,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
   },
   selectInput: {
     width: 60,
-    borderRadius: "50%",
-    "&:before": {
-      display: "none"
-    }
+    borderRadius: '50%',
+    '&:before': {
+      display: 'none',
+    },
   },
   selectImg: {
     width: 30,
-    borderRadius: "50%"
+    borderRadius: '50%',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    boxShadow: 'unset'
+    boxShadow: 'unset',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -64,41 +64,42 @@ const useStyles = makeStyles((theme) => ({
   },
   flexLine: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   toolbarTop: {
     display: 'flex',
     justifyContent: 'space-between',
   },
   link: {
-    color: "#FFF",
-    textDecoration: "none !important",
-    outline: "unset !important"
-  }
+    color: '#FFF',
+    textDecoration: 'none !important',
+    outline: 'unset !important',
+  },
 }));
 
 const Index: React.FC = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const classes = useStyles();
   const [flag, setFlag] = useState<string>('en');
 
-  const changeLanguage = (event: React.ChangeEvent<{ value: unknown }>): any => {
+  const changeLanguage = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ): any => {
     const languageSelected = event.target.value as string;
 
     setFlag(languageSelected);
     i18next.changeLanguage(languageSelected);
-  }
+  };
 
   return (
     <>
-      <AppBar
-        position="fixed"
-        className={classes.appBar}
-      >
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbarTop}>
           <div className={classes.flexLine}>
             <Typography variant="h6" noWrap>
-              <Link to="/" className={classes.link}>{t('site.name')}</Link>
+              <Link to="/" className={classes.link}>
+                {t('site.name')}
+              </Link>
             </Typography>
           </div>
           <div>
@@ -130,7 +131,7 @@ const Index: React.FC = () => {
         </Toolbar>
       </AppBar>
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

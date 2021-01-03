@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Form = styled.form`
   display: flex;
@@ -11,7 +11,7 @@ export const Form = styled.form`
     max-width: calc(100% - 20px);
   }
 
-  button[type="submit"] {
+  button[type='submit'] {
     max-width: 200px;
     height: 56px;
     width: 100%;

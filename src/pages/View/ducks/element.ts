@@ -1,4 +1,4 @@
-import {createActions, createReducer} from "reduxsauce";
+import { createActions, createReducer } from 'reduxsauce';
 
 interface InitialState {
   loading: boolean;
@@ -24,7 +24,7 @@ export interface TypeAction {
   msg?: string;
 }
 
-export const {Types, Creators} = createActions({
+export const { Types, Creators } = createActions({
   fetchElement: ['title'],
   fetchElementSaga: ['title'],
   fetchElementSuccess: ['element'],
@@ -36,37 +36,47 @@ const INITIAL_STATE = {
   loading: true,
   alternativesElements: {
     type: '',
-    results: []
+    results: [],
   },
   content: {},
   error: false,
   msgError: '',
-}
+};
 
-const fetchSuccess = (state: InitialState = INITIAL_STATE, action: TypeAction): any => ({
+const fetchSuccess = (
+  state: InitialState = INITIAL_STATE,
+  action: TypeAction,
+): any => ({
   ...state,
   loading: false,
   error: false,
-  element: action.element.payload
-})
+  element: action.element.payload,
+});
 
-const fetchAlternativeElementSuccess = (state: InitialState = INITIAL_STATE, action: TypeAction): any => ({
+const fetchAlternativeElementSuccess = (
+  state: InitialState = INITIAL_STATE,
+  action: TypeAction,
+): any => ({
   ...state,
   loading: false,
   error: false,
-  alternativesElements: action.elements.payload.total_results === 0 ? [] : action.elements.payload
-})
+  alternativesElements:
+    action.elements.payload.total_results === 0 ? [] : action.elements.payload,
+});
 
-const fetchError = (state: InitialState = INITIAL_STATE, action: TypeAction): any => ({
+const fetchError = (
+  state: InitialState = INITIAL_STATE,
+  action: TypeAction,
+): any => ({
   ...state,
   loading: false,
   element: [],
   error: true,
-  msgError: action.msg
-})
+  msgError: action.msg,
+});
 
 export default createReducer(INITIAL_STATE, {
   [Types.FETCH_ELEMENT_SUCCESS]: fetchSuccess,
   [Types.FETCH_ALTERNATIVE_ELEMENTS]: fetchAlternativeElementSuccess,
   [Types.FETCH_ELEMENT_ERROR]: fetchError,
-})
+});

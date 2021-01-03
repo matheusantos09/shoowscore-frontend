@@ -1,4 +1,4 @@
-import {TypedUseSelectorHook, useSelector} from 'react-redux'
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 interface RootState {
   element: {
@@ -16,7 +16,7 @@ interface RootState {
           // original_language: string;
           original_title: string;
           overview: string;
-          popularity: number
+          popularity: number;
           poster_path: string;
           // release_date: string;
           title: string;
@@ -31,7 +31,7 @@ interface RootState {
     content: {};
     msgError: '';
     error: boolean;
-  }
+  };
 }
 
-export const useElementSelector: TypedUseSelectorHook<RootState> = useSelector
+export const useElementSelector: TypedUseSelectorHook<RootState> = useSelector;

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 
-import store from './store'
+import store from './store';
 
-import Index from "./components/Container";
+import Index from './components/Container';
 
 store.subscribe(() => {
-  console.log('STATE REDUX', store.getState())
-})
+  console.log('STATE REDUX', store.getState());
+});
 
 const App: React.FC = () => {
   return (
@@ -15,6 +15,6 @@ const App: React.FC = () => {
       <Index />
     </Provider>
   );
-}
+};
 
-export default App
+export default App;

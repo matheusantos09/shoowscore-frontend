@@ -1,11 +1,11 @@
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 
-import './i18n'
+import './i18n';
 
 import 'typeface-roboto';
 
-import Index from "./components/MainSpinner";
+import Index from './components/MainSpinner';
 
 const App = React.lazy(() => import('./App'));
 
@@ -15,5 +15,5 @@ ReactDOM.render(
       <App />
     </React.StrictMode>
   </Suspense>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

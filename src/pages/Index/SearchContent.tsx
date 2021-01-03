@@ -1,14 +1,14 @@
-import React, {useCallback, useRef, useState} from "react"
-import {useTranslation} from "react-i18next";
-import { Link, useHistory } from 'react-router-dom';
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
+import React, { useCallback, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import {toastError} from "../../helpers/toastCustom";
+import { toastError } from '../../helpers/toastCustom';
 
-import {Form} from './styles'
+import { Form } from './styles';
 
 // const suggestion = [{title: '', id: 0}];
 
@@ -17,8 +17,8 @@ interface Props {
   inputValue?: string;
 }
 
-const SearchContent: React.FC<Props> = ({title = true, inputValue = ''}) => {
-  const {t} = useTranslation();
+const SearchContent: React.FC<Props> = ({ title = true, inputValue = '' }) => {
+  const { t } = useTranslation();
   // const [options, setOptions] = useState<OptionInterface[]>(suggestion);
   const [element, setElement] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,28 +28,31 @@ const SearchContent: React.FC<Props> = ({title = true, inputValue = ''}) => {
 
   const handleChangeAutoComplete = useCallback((event: any): any => {
     setElement(event.target.value);
-  }, [])
+  }, []);
 
-  const handleSubmit = useCallback((
-    event: React.FormEvent<HTMLFormElement>
-  ): void => {
-    event.preventDefault();
-    setLoading(true);
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>): void => {
+      event.preventDefault();
+      setLoading(true);
 
-    // @ts-ignore
-    if (element === '' && refTextField.current?.querySelector('input').value !== '') {
+      if (
+        element === '' &&
+        // @ts-ignore
+        refTextField.current?.querySelector('input').value !== ''
+      ) {
+        setLoading(false);
+
+        toastError(t('pages.index.validation.fill-search'));
+
+        return;
+      }
+
       setLoading(false);
 
-      toastError(t('pages.index.validation.fill-search'));
-
-      return;
-    }
-
-    setLoading(false);
-
-    history.push(`/search/${element}`)
-
-  }, [history, element, t])
+      history.push(`/search/${element}`);
+    },
+    [history, element, t],
+  );
 
   // if (redirect) {
   //   return <Redirect to={`/view/${element}`} />
@@ -57,13 +60,19 @@ const SearchContent: React.FC<Props> = ({title = true, inputValue = ''}) => {
 
   return (
     <>
-      {
-        title ? (
-          <Typography component="h2" variant="h3" align="center" color="textPrimary" gutterBottom>
-            {t('phrase.search-content')}
-          </Typography>
-        ) : ''
-      }
+      {title ? (
+        <Typography
+          component="h2"
+          variant="h3"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+        >
+          {t('phrase.search-content')}
+        </Typography>
+      ) : (
+        ''
+      )}
 
       <Form onSubmit={handleSubmit}>
         {/* <Autocomplete */}
@@ -89,7 +98,7 @@ const SearchContent: React.FC<Props> = ({title = true, inputValue = ''}) => {
         <TextField
           ref={refTextField}
           onChange={handleChangeAutoComplete}
-          style={{margin: 0}}
+          style={{ margin: 0 }}
           label={t('inputs.search_data')}
           margin="normal"
           variant="outlined"
@@ -97,16 +106,16 @@ const SearchContent: React.FC<Props> = ({title = true, inputValue = ''}) => {
           fullWidth
         />
 
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-        >
-          {loading ? <CircularProgress color="inherit" size={30} /> : t('button.search')}
+        <Button variant="contained" color="primary" type="submit">
+          {loading ? (
+            <CircularProgress color="inherit" size={30} />
+          ) : (
+            t('button.search')
+          )}
         </Button>
       </Form>
     </>
-  )
-}
+  );
+};
 
-export default SearchContent
+export default SearchContent;

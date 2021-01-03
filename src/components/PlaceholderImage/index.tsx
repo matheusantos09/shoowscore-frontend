@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import {Container} from "./styles";
+import { Container } from './styles';
 
 const PlaceholderImage: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const PlaceholderImage: React.FC = () => {
       <div />
       <div />
     </Container>
-  )
-}
+  );
+};
 
 export default PlaceholderImage;
