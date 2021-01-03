@@ -15,22 +15,24 @@ import NotFoundElement from './partials/NotFoundElement';
 
 interface UrlParams {
   id: string;
+  type: string;
 }
 
 const View: React.FC = () => {
-  const { id } = useParams<UrlParams>();
-
+  const { id, type } = useParams<UrlParams>();
   const elementView = useElementSelector((state) => state.element);
   const [loading, setLoading] = useState<boolean>(elementView.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(CreatorsElement.fetchElementSaga(id));
-  }, [dispatch, id]);
+    dispatch(CreatorsElement.fetchIdElementSaga(type.concat('||').concat(id)));
+  }, [dispatch, type, id]);
 
   useEffect(() => {
     setLoading(elementView.loading);
   }, [elementView.loading]);
+
+  console.log(elementView);
 
   return (
     <>

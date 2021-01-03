@@ -6,12 +6,13 @@ interface InitialState {
     type: string;
     results: {}[];
   };
-  content: {};
+  element: {};
   msgError?: string;
   error: boolean;
 }
 
 export interface TypeAction {
+  typeId: string;
   title: string;
   element: {
     payload: {};
@@ -30,17 +31,19 @@ export const { Types, Creators } = createActions({
   fetchElementSuccess: ['element'],
   fetchAlternativeElements: ['elements'],
   fetchElementError: ['msg'],
+  fetchIdElement: ['typeId'],
+  fetchIdElementSaga: ['typeId'],
 });
 
 const INITIAL_STATE = {
   loading: true,
+  error: false,
+  msgError: '',
   alternativesElements: {
     type: '',
     results: [],
   },
-  content: {},
-  error: false,
-  msgError: '',
+  element: {},
 };
 
 const fetchSuccess = (
@@ -51,17 +54,7 @@ const fetchSuccess = (
   loading: false,
   error: false,
   element: action.element.payload,
-});
-
-const fetchAlternativeElementSuccess = (
-  state: InitialState = INITIAL_STATE,
-  action: TypeAction,
-): any => ({
-  ...state,
-  loading: false,
-  error: false,
-  alternativesElements:
-    action.elements.payload.total_results === 0 ? [] : action.elements.payload,
+  alternativesElements: [],
 });
 
 const fetchError = (
@@ -75,8 +68,19 @@ const fetchError = (
   msgError: action.msg,
 });
 
+const fetchAlternativeElementSuccess = (
+  state: InitialState = INITIAL_STATE,
+  action: TypeAction,
+): any => ({
+  ...state,
+  loading: false,
+  error: false,
+  alternativesElements:
+    action.elements.payload.total_results === 0 ? [] : action.elements.payload,
+});
+
 export default createReducer(INITIAL_STATE, {
   [Types.FETCH_ELEMENT_SUCCESS]: fetchSuccess,
-  [Types.FETCH_ALTERNATIVE_ELEMENTS]: fetchAlternativeElementSuccess,
   [Types.FETCH_ELEMENT_ERROR]: fetchError,
+  [Types.FETCH_ALTERNATIVE_ELEMENTS]: fetchAlternativeElementSuccess,
 });

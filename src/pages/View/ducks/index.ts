@@ -5,12 +5,15 @@ import {
   TypeAction as ElementTypeAction,
   Types as TypesElement,
 } from './element';
-import { fetchElementByTitle } from '../../../services/endpoints';
+import {
+  fetchElementById,
+  fetchElementByTitle,
+} from '../../../services/endpoints';
 import i18n from '../../../i18n';
 
 const TIMEOUT = 20000;
 
-function* sagaFetchElement(action: ElementTypeAction): any {
+function* sagaFetchAlternativeElement(action: ElementTypeAction): any {
   try {
     const { response, timeout } = yield race({
       response: call(fetchElementByTitle, action.title),
@@ -44,9 +47,42 @@ function* sagaFetchElement(action: ElementTypeAction): any {
   }
 }
 
+function* sagaFetchIdElement(action: ElementTypeAction): any {
+  try {
+    const { response, timeout } = yield race({
+      response: call(fetchElementById, action.typeId),
+      timeout: delay(TIMEOUT),
+    });
+
+    if (timeout) {
+      yield put(
+        CreatorsElement.fetchElementError(i18n.t('api.errors.timeout')),
+      );
+
+      return;
+    }
+
+    if (response.status < 300) {
+      yield put(CreatorsElement.fetchElementSuccess(response.data));
+    } else {
+      yield put(
+        CreatorsElement.fetchElementError(i18n.t('api.errors.code300')),
+      );
+    }
+  } catch (e) {
+    yield put(CreatorsElement.fetchElementError(i18n.t('api.errors.fatal')));
+    yield console.log(e);
+  }
+}
+
 export default function* rootSaga(): any {
   return yield all([
+    yield takeLatest(
+      // @ts-ignore
+      TypesElement.FETCH_ELEMENT_SAGA,
+      sagaFetchAlternativeElement,
+    ),
     // @ts-ignore
-    yield takeLatest(TypesElement.FETCH_ELEMENT_SAGA, sagaFetchElement),
+    yield takeLatest(TypesElement.FETCH_ID_ELEMENT_SAGA, sagaFetchIdElement),
   ]);
 }
