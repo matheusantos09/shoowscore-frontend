@@ -1,42 +1,43 @@
-import React, {useState} from "react"
+import React, {useCallback, useRef, useState} from "react"
 import {useTranslation} from "react-i18next";
-import {Redirect} from "react-router";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import { Link, useHistory } from 'react-router-dom';
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Button from '@material-ui/core/Button';
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import {OptionInterface} from "../../Interfaces/ComboBox";
 import {toastError} from "../../helpers/toastCustom";
 
 import {Form} from './styles'
 
-const suggestion = [
-  {title: 'How i met your mother'},
-  {title: 'Breaking Bad'},
-  {title: 'Avatar'},
-  {title: 'Matrix'},
-];
+// const suggestion = [{title: '', id: 0}];
 
-const SearchContent: React.FC = () => {
+interface Props {
+  title?: boolean;
+  inputValue?: string;
+}
+
+const SearchContent: React.FC<Props> = ({title = true, inputValue = ''}) => {
   const {t} = useTranslation();
-  const [options] = useState<OptionInterface[]>(suggestion);
+  // const [options, setOptions] = useState<OptionInterface[]>(suggestion);
   const [element, setElement] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [redirect, setRedirect] = useState<boolean>(false);
+  // const [redirect, setRedirect] = useState<boolean>(false);
+  const refTextField = useRef(null);
+  const history = useHistory();
 
-  const handleChangeAutoComplete = (event: any, newInputValue: string): any => {
-    setElement(newInputValue);
-  }
+  const handleChangeAutoComplete = useCallback((event: any): any => {
+    setElement(event.target.value);
+  }, [])
 
-  const handleSubmit = (
+  const handleSubmit = useCallback((
     event: React.FormEvent<HTMLFormElement>
   ): void => {
     event.preventDefault();
     setLoading(true);
 
-    if (element === '') {
+    // @ts-ignore
+    if (element === '' && refTextField.current?.querySelector('input').value !== '') {
       setLoading(false);
 
       toastError(t('pages.index.validation.fill-search'));
@@ -44,36 +45,56 @@ const SearchContent: React.FC = () => {
       return;
     }
 
-    setRedirect(true);
-  }
+    setLoading(false);
 
-  if (redirect) {
-    return <Redirect to={`/view/${element}`} />
-  }
+    history.push(`/search/${element}`)
+
+  }, [history, element, t])
+
+  // if (redirect) {
+  //   return <Redirect to={`/view/${element}`} />
+  // }
 
   return (
     <>
-      <Typography component="h2" variant="h3" align="center" color="textPrimary" gutterBottom>
-        {t('phrase.search-content')}
-      </Typography>
-      <Form onSubmit={handleSubmit}>
+      {
+        title ? (
+          <Typography component="h2" variant="h3" align="center" color="textPrimary" gutterBottom>
+            {t('phrase.search-content')}
+          </Typography>
+        ) : ''
+      }
 
-        <Autocomplete
-          // getOptionSelected={ ( option, value ) => option.title === value.title }
-          options={options.map((option) => option.title)}
-          onInputChange={handleChangeAutoComplete}
+      <Form onSubmit={handleSubmit}>
+        {/* <Autocomplete */}
+        {/*   // getOptionSelected={ ( option, value ) => option.title === value.title } */}
+        {/*   // options={options.map((option) => option.title)} */}
+        {/*   options={[]} */}
+        {/*   onInputChange={handleChangeAutoComplete} */}
+        {/*   fullWidth */}
+        {/*   // freeSolo */}
+        {/*   defaultValue={inputValue} */}
+        {/*   renderInput={(params) => ( */}
+        {/*     <TextField */}
+        {/*       {...params} */}
+        {/*       style={{margin: 0}} */}
+        {/*       label={t('inputs.search_data')} */}
+        {/*       margin="normal" */}
+        {/*       variant="outlined" */}
+        {/*       InputProps={{...params.InputProps, type: 'search'}} */}
+        {/*     /> */}
+        {/*   )} */}
+        {/*  /> */}
+
+        <TextField
+          ref={refTextField}
+          onChange={handleChangeAutoComplete}
+          style={{margin: 0}}
+          label={t('inputs.search_data')}
+          margin="normal"
+          variant="outlined"
+          defaultValue={inputValue}
           fullWidth
-          freeSolo
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              style={{margin: 0}}
-              label={t('inputs.search_data')}
-              margin="normal"
-              variant="outlined"
-              InputProps={{...params.InputProps, type: 'search'}}
-            />
-          )}
         />
 
         <Button

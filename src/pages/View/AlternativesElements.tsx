@@ -3,7 +3,8 @@ import {useTranslation} from "react-i18next";
 import Typography from '@material-ui/core/Typography';
 import {isAfter, parseISO} from 'date-fns';
 import LazyLoad from 'react-lazyload';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {Link as LinkScroll} from 'react-scroll';
 
 import {Container, ElementView, List, Sidebar} from "./styles";
 import {full_path_images} from "../../configs/tmdb_images";
@@ -38,27 +39,34 @@ const AlternativesElements: React.FC<AlternativesElementsItemInterface> = ({payl
     // eslint-disable-next-line no-param-reassign
     elementImage.target.src = 'https://picsum.photos/250/375'
   }, []);
-
   const {t} = useTranslation();
 
   return (
     <>
-      <Typography
-        component="h2"
-        variant="h5"
-        align="center"
-        color="textPrimary"
-      >
-        {t('pages.view.manyAlternatives.default')}
-      </Typography>
       <Container>
         <Sidebar>
-          {payload.results.map(typeElement => {
-            const numberElements = Object.values(typeElement.results).length;
+          <Typography
+            component="h5"
+            className="title"
+          >
+            {t('types_collection.title_filter')}
+          </Typography>
 
-            return numberElements ?
-              <li>{t(`types_collection.${typeElement.type}`)} <span>{numberElements}</span></li> : ''
-          })}
+          <ul>
+            {payload.results.map(typeElement => {
+              const numberElements = Object.values(typeElement.results).length;
+
+              return numberElements ?
+                (
+                  <li key={typeElement.type}>
+                    <LinkScroll to={typeElement.type} spy smooth offset={-100} duration={600}>
+                      {t(`types_collection.${typeElement.type}`)} <span>{numberElements}</span>
+                    </LinkScroll>
+                  </li>
+                )
+                : ''
+            })}
+          </ul>
         </Sidebar>
         <List>
           {

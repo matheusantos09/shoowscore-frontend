@@ -19,7 +19,7 @@ function* sagaFetchElement(action: ElementTypeAction): any {
     }
 
     if (response.status < 300) {
-      if (response.data.payload.total_results > 1) {
+      if (response.data.payload.total_results > 1 || response.data.payload.total_results === 0) {
         yield put(CreatorsElement.fetchAlternativeElements(response.data))
       } else {
         yield put(CreatorsElement.fetchElementSuccess(response.data))

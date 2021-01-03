@@ -45,18 +45,12 @@ const View: React.FC = () => {
         {/* Loading */}
         {loading && <LoaderCam />}
 
-        {/* Alternative Content
-              {(!loading && !elementView.error && !_.isEmpty(elementView.alternativesElements.results)) ?
-                // @ts-ignore
-                <AlternativesElements payload={elementView.alternativesElements} /> : null}
-            */}
-
         {/* Not found */}
-        {(!loading && !elementView.error && _.isEmpty(elementView.alternativesElements) && !elementView.element.length) ?
+        {(!loading && !elementView.error && _.isEmpty(elementView.alternativesElements) && typeof elementView.element !== 'undefined' && !elementView.element.length) ?
           <NotFoundElement /> : null}
 
         {/* Content finded */}
-        {(!loading && !elementView.error && _.isEmpty(elementView.alternativesElements) && elementView.element.length) ?
+        {(!loading && !elementView.error && _.isEmpty(elementView.alternativesElements) && typeof elementView.element !== 'undefined' && elementView.element.length) ?
           <ShowElement /> : null}
 
         {/* Msg error */}

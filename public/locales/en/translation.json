@@ -5,6 +5,7 @@
     "shortDescription": "Find the not found"
   },
   "types_collection": {
+    "title_filter": "Filter",
     "default": "Types",
     "tv_show": "TV Show",
     "movie": "Movies",

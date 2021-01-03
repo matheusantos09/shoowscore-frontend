@@ -6,11 +6,12 @@ export const Form = styled.form`
   width: 100%;
   margin-top: 20px;
 
-  .MuiAutocomplete-hasClearIcon {
-    margin: 0 20px 0 0;
+  //.MuiAutocomplete-hasClearIcon {
+  .MuiInputBase-formControl {
+    max-width: calc(100% - 20px);
   }
 
-  button {
+  button[type="submit"] {
     max-width: 200px;
     height: 56px;
     width: 100%;

@@ -5,10 +5,11 @@
     "shortDescription": "Find the not found"
   },
   "types_collection": {
+    "title_filter": "Filter",
     "default": "Types",
     "tv_show": "TV Show",
-    "tv": "TV Show TYPE",
-    "movie": "Movies TYPE"
+    "movie": "Movies",
+    "tv": "TV Show"
   },
   "inputs": {
     "search_data": "Enter a name for search",
@@ -26,7 +27,7 @@
     }
   },
   "phrase": {
-    "search-content": "Watch about series or movie222222222",
+    "search-content": "Watch about series or movie",
     "loading": "Loading"
   },
   "button": {
@@ -50,5 +51,8 @@
         "fill-search": "Fill the title of content"
       }
     }
+  },
+  "tags": {
+    "coming_soon": "Coming Soon"
   }
 }

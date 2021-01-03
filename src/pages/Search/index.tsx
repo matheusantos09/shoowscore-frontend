@@ -1,12 +1,10 @@
-import React, {useEffect} from 'react'
-import _ from "lodash";
-import {useDispatch} from "react-redux";
-import {useHistory, useParams} from "react-router";
+import React from 'react'
+import {useParams} from "react-router";
+import Typography from "@material-ui/core/Typography";
+import {useTranslation} from "react-i18next";
 
-import AlternativesElements from "../View/AlternativesElements";
-import {useElementSelector} from "../../store/reducersRoot/element";
-import NotFoundElement from "../View/partials/NotFoundElement";
-import {Creators as CreatorsElement} from "../View/ducks/element";
+import SearchContent from "../Index/SearchContent";
+import SearchWrapper from "./SearchWrapper";
 
 interface UrlParams {
   elementName: string;
@@ -16,24 +14,17 @@ const Search: React.FC = () => {
   let {elementName} = useParams<UrlParams>();
   elementName = decodeURIComponent(elementName);
 
-  const elementView = useElementSelector(state => state.element);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(CreatorsElement.fetchElementSaga(elementName))
-  }, [dispatch, elementName]);
+  const {t} = useTranslation();
 
   return (
     <>
-      {/* @ts-ignore */}
-      {!_.isEmpty(elementView.alternativesElements.results[0]) ?
-        // @ts-ignore
-        <AlternativesElements payload={elementView.alternativesElements} /> : null}
+      <Typography component="h2" variant="h5" align="center" color="textPrimary">
+        {t('pages.view.manyAlternatives.default')}
+      </Typography>
 
-      {/* Not found */}
-      {/* @ts-ignore */}
-      {_.isEmpty(elementView.alternativesElements[0]) ?
-        <NotFoundElement /> : null}
+      <SearchContent title={false} inputValue={elementName} />
+
+      <SearchWrapper />
     </>
   )
 }

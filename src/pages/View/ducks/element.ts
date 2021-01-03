@@ -4,7 +4,7 @@ interface InitialState {
   loading: boolean;
   alternativesElements?: {
     type: string;
-    results: {}[]
+    results: {}[];
   };
   content: {};
   msgError?: string;
@@ -17,7 +17,9 @@ export interface TypeAction {
     payload: {};
   };
   elements: {
-    payload: {};
+    payload: {
+      total_results: number;
+    };
   };
   msg?: string;
 }
@@ -34,7 +36,7 @@ const INITIAL_STATE = {
   loading: true,
   alternativesElements: {
     type: '',
-    results: [{}]
+    results: []
   },
   content: {},
   error: false,
@@ -52,7 +54,7 @@ const fetchAlternativeElementSuccess = (state: InitialState = INITIAL_STATE, act
   ...state,
   loading: false,
   error: false,
-  alternativesElements: action.elements.payload
+  alternativesElements: action.elements.payload.total_results === 0 ? [] : action.elements.payload
 })
 
 const fetchError = (state: InitialState = INITIAL_STATE, action: TypeAction): any => ({

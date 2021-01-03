@@ -11,6 +11,7 @@ export const List = styled.ul`
 
     li {
       list-style: none;
+      max-width: calc(100% / 4)
     }
   }
 
@@ -65,8 +66,8 @@ export const ElementView = styled.div`
   margin: 20px;
   position: relative;
   overflow: hidden;
-  height: calc(100% - 40px);
   border-radius: 8px;
+  height: 324px;
 
   &:hover {
     .box-infos {
@@ -100,7 +101,7 @@ export const ElementView = styled.div`
 
   .box-image {
     position: relative;
-    width: 250px;
+    //width: 250px;
     overflow: hidden;
 
     img {
@@ -144,14 +145,43 @@ export const ElementView = styled.div`
 `
 
 export const Sidebar = styled.ul`
-  padding: 0;
-  width: 200px;
-  margin-right: 40px;
+  .title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    letter-spacing: .5px;
+  }
 
-  li {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
+  & > ul {
+    padding: 0;
+    width: 200px;
+    margin-right: 40px;
+
+    li {
+      list-style: none;
+
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      &:nth-child(odd) {
+        background: #3b3b3b;
+      }
+
+      a {
+        margin: 0;
+        padding: 4px 8px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent;
+        border: 0;
+        font-size: 14px;
+        color: #FFF;
+        cursor: pointer;
+        height: 30px;
+      }
+    }
   }
 `
 
