@@ -8,8 +8,8 @@ import { Link as LinkScroll } from 'react-scroll';
 import slugify from 'slugify';
 
 import { Container, ElementView, List, Sidebar } from './styles';
-import { full_path_images } from '../../configs/tmdb_images';
-import PlaceholderImage from '../../components/PlaceholderImage';
+import { fullPathImages } from '../../utils/fullPathImage';
+import PlaceholderImage from '../PlaceholderImage';
 
 export interface AlternativesElementsItemInterface {
   payload: {
@@ -89,7 +89,7 @@ const AlternativesElements: React.FC<AlternativesElementsItemInterface> = ({
                   </div>
                   <ul>
                     {Object.values(typeElement.results).map((item) => {
-                      const imagePath = full_path_images(
+                      const imagePath = fullPathImages(
                         'w300',
                         item.poster_path,
                       );

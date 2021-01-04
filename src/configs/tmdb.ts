@@ -14,12 +14,13 @@ export const SIZE_IMAGES = {
   original: 'original/',
 };
 
-export function full_path_images(size = 'original', path = ''): string {
-  // @ts-ignore
-  if (typeof SIZE_IMAGES[size] === 'undefined') {
-    return BASE_PATH_IMAGES + SIZE_IMAGES.original + path;
-  }
-
-  // @ts-ignore
-  return BASE_PATH_IMAGES + SIZE_IMAGES[size] + path;
-}
+export const MOVIE = {
+  status: {
+    rumored: 'Rumored',
+    planned: 'Planned',
+    inProduction: 'In Production',
+    postProduction: 'Post Production',
+    released: 'Released',
+    canceled: 'Canceled',
+  },
+};

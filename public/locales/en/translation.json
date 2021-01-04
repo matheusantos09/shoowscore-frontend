@@ -41,9 +41,14 @@
     }
   },
   "pages": {
-    "view": {
+    "search": {
       "manyAlternatives": {
         "default": "Select 1 movie/tv show to continue"
+      }
+    },
+    "view": {
+      "infos": {
+        "genres" : "Genres:"
       }
     },
     "index": {

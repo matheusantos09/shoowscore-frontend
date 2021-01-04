@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4, 2),
     margin: '64px auto 0 auto',
     maxWidth: '1336px',
+    width: '100%',
+    position: 'relative',
   },
 }));
 

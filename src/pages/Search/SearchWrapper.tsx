@@ -6,8 +6,8 @@ import { useParams } from 'react-router';
 import { useElementSelector } from '../../store/reducersRoot/element';
 import { Creators as CreatorsElement } from '../View/ducks/element';
 
-import AlternativesElements from '../View/AlternativesElements';
-import NotFoundElement from '../View/partials/NotFoundElement';
+import AlternativesElements from '../../components/AlternativeElements';
+import NotFoundSearch from '../../components/NotFoundSearch';
 
 interface UrlParams {
   elementName: string;
@@ -33,7 +33,7 @@ const SearchWrapper: React.FC = () => {
 
       {/* Not found */}
       {_.isEmpty(elementView.alternativesElements.results) ? (
-        <NotFoundElement />
+        <NotFoundSearch />
       ) : null}
     </>
   );

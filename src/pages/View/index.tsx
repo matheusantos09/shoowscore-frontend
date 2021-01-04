@@ -10,8 +10,8 @@ import ErrorMessage from '../../components/Alert/ErrorMessage';
 
 import { useElementSelector } from '../../store/reducersRoot/element';
 
-import ShowElement from './partials/ShowElement';
-import NotFoundElement from './partials/NotFoundElement';
+import ShowElement from '../../components/ShowElement';
+import NotFoundElement from '../../components/NotFoundElement';
 
 interface UrlParams {
   id: string;
@@ -32,8 +32,6 @@ const View: React.FC = () => {
     setLoading(elementView.loading);
   }, [elementView.loading]);
 
-  console.log(elementView);
-
   return (
     <>
       <div>
@@ -43,8 +41,8 @@ const View: React.FC = () => {
         {/* Not found */}
         {!loading &&
         !elementView.error &&
-        typeof elementView.element !== 'undefined' &&
-        !elementView.element.length ? (
+        typeof elementView.element === 'undefined' &&
+        elementView.element ? (
           <NotFoundElement />
         ) : null}
 
@@ -52,8 +50,8 @@ const View: React.FC = () => {
         {!loading &&
         !elementView.error &&
         typeof elementView.element !== 'undefined' &&
-        elementView.element.length ? (
-          <ShowElement />
+        elementView.element ? (
+          <ShowElement element={elementView.element} />
         ) : null}
 
         {/* Msg error */}

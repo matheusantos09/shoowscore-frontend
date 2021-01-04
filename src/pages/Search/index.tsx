@@ -24,7 +24,7 @@ const Search: React.FC = () => {
         align="center"
         color="textPrimary"
       >
-        {t('pages.view.manyAlternatives.default')}
+        {t('pages.search.manyAlternatives.default')}
       </Typography>
 
       <SearchContent title={false} inputValue={elementName} />
