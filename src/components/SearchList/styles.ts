@@ -145,6 +145,8 @@ export const ElementView = styled.div`
 `
 
 export const Sidebar = styled.ul`
+  padding: 0;
+
   .title {
     margin-bottom: 10px;
     font-weight: bold;

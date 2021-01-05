@@ -9,25 +9,16 @@ interface InitialState {
 
 export interface TypeAction {
   typeId: string;
-  title: string;
-  element: {
-    payload: {};
-  };
-  elements: {
-    payload: {
-      total_results: number;
-    };
-  };
+  query: string;
+  payload: {};
   msg?: string;
 }
 
 export const { Types, Creators } = createActions({
-  fetchElement: ['title'],
-  fetchElementSaga: ['title'],
-  fetchElementSuccess: ['element'],
-  fetchElementError: ['msg'],
-  fetchIdElement: ['typeId'],
-  fetchIdElementSaga: ['typeId'],
+  fetchSearch: ['query'],
+  fetchSearchSaga: ['query'],
+  fetchSuccess: ['payload'],
+  fetchError: ['payload'],
 });
 
 const INITIAL_STATE = {
@@ -40,12 +31,17 @@ const INITIAL_STATE = {
 const fetchSuccess = (
   state: InitialState = INITIAL_STATE,
   action: TypeAction,
-): any => ({
-  ...state,
-  loading: false,
-  error: false,
-  payload: action.element.payload,
-});
+): any => {
+  console.log('FETCH SUCCESS SERACH');
+  console.log(state);
+
+  return {
+    ...state,
+    loading: false,
+    error: false,
+    payload: action.payload,
+  };
+};
 
 const fetchError = (
   state: InitialState = INITIAL_STATE,
@@ -53,12 +49,12 @@ const fetchError = (
 ): any => ({
   ...state,
   loading: false,
-  element: [],
+  payload: {},
   error: true,
   msgError: action.msg,
 });
 
 export default createReducer(INITIAL_STATE, {
-  [Types.FETCH_ELEMENT_SUCCESS]: fetchSuccess,
-  [Types.FETCH_ELEMENT_ERROR]: fetchError,
+  [Types.FETCH_SUCCESS]: fetchSuccess,
+  [Types.FETCH_ERROR]: fetchError,
 });

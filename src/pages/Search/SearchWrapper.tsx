@@ -3,11 +3,11 @@ import _ from 'lodash';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 
-import { useElementSelector } from '../../store/reducersRoot/element';
-import { Creators as CreatorsElement } from '../View/ducks/element';
+import { Creators as CreatorsSearch } from './ducks/search';
 
-import AlternativesElements from '../../components/AlternativeElements';
+import SearchList from '../../components/SearchList';
 import NotFoundSearch from '../../components/NotFoundSearch';
+import { useSearchSelector } from '../../store/reducersRoot/search';
 
 interface UrlParams {
   elementName: string;
@@ -17,24 +17,18 @@ const SearchWrapper: React.FC = () => {
   let { elementName } = useParams<UrlParams>();
   elementName = decodeURIComponent(elementName);
 
-  const elementView = useElementSelector((state) => state.element);
+  const searchView = useSearchSelector((state) => state.search);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(CreatorsElement.fetchElementSaga(elementName));
+    dispatch(CreatorsSearch.fetchSearchSaga(elementName));
   }, [dispatch, elementName]);
 
   return (
     <>
-      {!_.isEmpty(elementView.alternativesElements.results) ? (
-        // @ts-ignore
-        <AlternativesElements payload={elementView.alternativesElements} />
-      ) : null}
+      {!_.isEmpty(searchView.payload) ? <SearchList /> : null}
 
-      {/* Not found */}
-      {_.isEmpty(elementView.alternativesElements.results) ? (
-        <NotFoundSearch />
-      ) : null}
+      {_.isEmpty(searchView.payload) ? <NotFoundSearch /> : null}
     </>
   );
 };

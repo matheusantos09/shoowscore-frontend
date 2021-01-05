@@ -37,6 +37,14 @@
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/no-explicit-any": "off", // Remove after
     "@typescript-eslint/ban-ts-comment": "off", // Remove after
+    "no-console": "off", // Remove after
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+        "message": "Unexpected property on console object was called"
+      }
+    ],  // Remove after
     "@typescript-eslint/ban-types": [
       "error",
       {

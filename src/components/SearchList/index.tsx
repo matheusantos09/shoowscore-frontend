@@ -10,39 +10,15 @@ import slugify from 'slugify';
 import { Container, ElementView, List, Sidebar } from './styles';
 import { fullPathImages } from '../../utils/fullPathImage';
 import PlaceholderImage from '../PlaceholderImage';
+import { useSearchSelector } from '../../store/reducersRoot/search';
 
-export interface AlternativesElementsItemInterface {
-  payload: {
-    results: {
-      type: string;
-      results: {
-        title?: string;
-        name?: string;
-        adult: boolean;
-        backdrop_path?: null;
-        id: number;
-        original_language: string;
-        original_title: string;
-        overview: string;
-        popularity: number;
-        poster_path: string;
-        release_date: string;
-        video: boolean;
-        vote_average: number;
-        vote_count: number;
-      }[];
-    }[];
-  };
-}
-
-const AlternativesElements: React.FC<AlternativesElementsItemInterface> = ({
-  payload,
-}): any => {
+const SearchList: React.FC = (): any => {
   const defaultImg = useCallback((elementImage): void => {
     // eslint-disable-next-line no-param-reassign
     elementImage.target.src = 'https://picsum.photos/250/375';
   }, []);
   const { t } = useTranslation();
+  const search = useSearchSelector((state) => state.search);
 
   return (
     <>
@@ -53,8 +29,8 @@ const AlternativesElements: React.FC<AlternativesElementsItemInterface> = ({
           </Typography>
 
           <ul>
-            {payload.results.map((typeElement) => {
-              const numberElements = Object.values(typeElement.results).length;
+            {search.payload.payload.results.map((typeElement) => {
+              const numberElements = search.payload.payload.total_results;
 
               return numberElements ? (
                 <li key={typeElement.type}>
@@ -76,7 +52,7 @@ const AlternativesElements: React.FC<AlternativesElementsItemInterface> = ({
           </ul>
         </Sidebar>
         <List>
-          {payload.results.map((typeElement) => (
+          {search.payload.payload.results.map((typeElement) => (
             <>
               {Object.values(typeElement.results).length ? (
                 <li
@@ -88,12 +64,15 @@ const AlternativesElements: React.FC<AlternativesElementsItemInterface> = ({
                     <span>{t(`types_collection.${typeElement.type}`)}</span>
                   </div>
                   <ul>
-                    {Object.values(typeElement.results).map((item) => {
+                    {typeElement.results.map((item) => {
+                      console.log('item');
+                      console.log(item);
+
                       const imagePath = fullPathImages(
                         'w300',
                         item.poster_path,
                       );
-                      const elementName = item.name ? item.name : item.title;
+                      const elementName = item.name ?? item.title;
 
                       let tagComingSoon = false;
 
@@ -150,4 +129,4 @@ const AlternativesElements: React.FC<AlternativesElementsItemInterface> = ({
   );
 };
 
-export default AlternativesElements;
+export default SearchList;

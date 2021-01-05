@@ -2,9 +2,12 @@ import { all, call, delay, put, race, takeLatest } from 'redux-saga/effects';
 
 import {
   Creators as CreatorsElement,
-  TypeAction as ElementTypeAction,
+  TypeAction as TypeActionElement,
   Types as TypesElement,
 } from './element';
+
+import { Creators as CreatorsSearch } from '../../Search/ducks/search';
+
 import {
   fetchElementById,
   fetchElementByTitle,
@@ -13,7 +16,7 @@ import i18n from '../../../i18n';
 
 const TIMEOUT = 20000;
 
-function* sagaFetchAlternativeElement(action: ElementTypeAction): any {
+function* sagaFetchAlternativeElement(action: TypeActionElement): any {
   try {
     const { response, timeout } = yield race({
       response: call(fetchElementByTitle, action.title),
@@ -32,7 +35,7 @@ function* sagaFetchAlternativeElement(action: ElementTypeAction): any {
         response.data.payload.total_results > 1 ||
         response.data.payload.total_results === 0
       ) {
-        yield put(CreatorsElement.fetchAlternativeElements(response.data));
+        yield put(CreatorsSearch.fetchSuccess(response.data));
       } else {
         yield put(CreatorsElement.fetchElementSuccess(response.data));
       }
@@ -47,7 +50,7 @@ function* sagaFetchAlternativeElement(action: ElementTypeAction): any {
   }
 }
 
-function* sagaFetchIdElement(action: ElementTypeAction): any {
+function* sagaFetchIdElement(action: TypeActionElement): any {
   try {
     const { response, timeout } = yield race({
       response: call(fetchElementById, action.typeId),
