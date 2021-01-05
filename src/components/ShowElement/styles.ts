@@ -29,7 +29,7 @@ export const BlackSpaceHover = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  padding: 30px 20px;
+  padding: 30px;
   border-radius: 4px;
   background-color: #303030;
 `;
@@ -45,8 +45,8 @@ export const FirstInformation = styled.div`
 
   .lazyload-wrapper {
     margin-right: 30px;
-    max-width: 250px;
-    min-height: 375px;
+    width: 250px;
+    height: 375px;
     position: relative;
 
     img {
@@ -66,7 +66,7 @@ export const FirstInformation = styled.div`
       img {
         width: auto;
 
-        &:not(last-child){
+        &:not(last-child) {
           margin-right: 8px;
         }
       }
@@ -74,9 +74,15 @@ export const FirstInformation = styled.div`
   }
 
   .infos {
+    max-width: calc(100% - 280px);
 
     h1 {
       line-height: 1;
+      margin: 0 0 10px 0;
+    }
+
+    i {
+      font-size: 13px;
       margin: 0 0 20px 0;
     }
 

@@ -65,9 +65,6 @@ const SearchList: React.FC = (): any => {
                   </div>
                   <ul>
                     {typeElement.results.map((item) => {
-                      console.log('item');
-                      console.log(item);
-
                       const imagePath = fullPathImages(
                         'w300',
                         item.poster_path,

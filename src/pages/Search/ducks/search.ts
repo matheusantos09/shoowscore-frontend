@@ -31,17 +31,12 @@ const INITIAL_STATE = {
 const fetchSuccess = (
   state: InitialState = INITIAL_STATE,
   action: TypeAction,
-): any => {
-  console.log('FETCH SUCCESS SERACH');
-  console.log(state);
-
-  return {
-    ...state,
-    loading: false,
-    error: false,
-    payload: action.payload,
-  };
-};
+): any => ({
+  ...state,
+  loading: false,
+  error: false,
+  payload: action.payload,
+});
 
 const fetchError = (
   state: InitialState = INITIAL_STATE,

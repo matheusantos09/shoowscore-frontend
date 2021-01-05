@@ -52,9 +52,9 @@ export default function InputSearchData() {
     }
   }, [open]);
 
-  const handleChangeAutoComplete = (event: any, newValue: string | null) => {
-    console.log(newValue);
-  };
+  // const handleChangeAutoComplete = (event: any, newValue: string | null) => {
+  //   console.log(newValue);
+  // };
 
   return (
     <Autocomplete
@@ -66,7 +66,7 @@ export default function InputSearchData() {
         setOpen(false);
       }}
       // @ts-ignore
-      onChange={handleChangeAutoComplete}
+      // onChange={handleChangeAutoComplete}
       getOptionSelected={(option, value) => option.title === value.title}
       getOptionLabel={(option) => option.title}
       options={options}

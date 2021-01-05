@@ -51,7 +51,7 @@ const View: React.FC = () => {
         !elementView.error &&
         typeof elementView.payload !== 'undefined' &&
         elementView.payload ? (
-          <ShowElement element={elementView.payload} />
+          <ShowElement type={type} />
         ) : null}
 
         {/* Msg error */}

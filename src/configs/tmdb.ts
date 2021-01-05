@@ -24,3 +24,8 @@ export const MOVIE = {
     canceled: 'Canceled',
   },
 };
+
+export const TYPES = {
+  tv_show: 'tv',
+  movie: 'movie',
+};
