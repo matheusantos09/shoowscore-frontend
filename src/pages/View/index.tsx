@@ -32,6 +32,9 @@ const View: React.FC = () => {
     setLoading(elementView.loading);
   }, [elementView.loading]);
 
+  console.log('elementView');
+  console.log(elementView);
+
   return (
     <>
       <div>
@@ -41,17 +44,17 @@ const View: React.FC = () => {
         {/* Not found */}
         {!loading &&
         !elementView.error &&
-        typeof elementView.element === 'undefined' &&
-        elementView.element ? (
+        typeof elementView.payload === 'undefined' &&
+        elementView.payload ? (
           <NotFoundElement />
         ) : null}
 
         {/* Content finded */}
         {!loading &&
         !elementView.error &&
-        typeof elementView.element !== 'undefined' &&
-        elementView.element ? (
-          <ShowElement element={elementView.element} />
+        typeof elementView.payload !== 'undefined' &&
+        elementView.payload ? (
+          <ShowElement element={elementView.payload} />
         ) : null}
 
         {/* Msg error */}
