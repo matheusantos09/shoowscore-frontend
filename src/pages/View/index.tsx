@@ -32,9 +32,6 @@ const View: React.FC = () => {
     setLoading(elementView.loading);
   }, [elementView.loading]);
 
-  console.log('elementView');
-  console.log(elementView);
-
   return (
     <>
       <div>
