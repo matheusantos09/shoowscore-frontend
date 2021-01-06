@@ -39,7 +39,7 @@ const Movie: React.FC = () => {
           <img
             onError={(e) => defaultImg(e, '1920/1080')}
             src={backgroundPath}
-            alt={element.original_title}
+            alt={element.title}
           />
         </LazyLoad>
       </BoxImage>
@@ -49,15 +49,11 @@ const Movie: React.FC = () => {
       <Wrapper>
         <FirstInformation>
           <LazyLoad placeholder={<PlaceholderImage />}>
-            <img
-              onError={defaultImg}
-              src={posterPath}
-              alt={element.original_title}
-            />
+            <img onError={defaultImg} src={posterPath} alt={element.title} />
           </LazyLoad>
 
           <div className="infos">
-            <h1>{element.original_title}</h1>
+            <h1>{element.title}</h1>
             <i>{element.tagline}</i>
             <p>{element.overview}</p>
             <div className="line">

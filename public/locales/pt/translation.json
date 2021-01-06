@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "ShoowScore",
+    "name": "ShoowScore-PT_BR",
     "description": "Finding what you wanted to watch on your night",
     "shortDescription": "Find the not found"
   },
@@ -41,9 +41,14 @@
     }
   },
   "pages": {
-    "view": {
+    "search": {
       "manyAlternatives": {
         "default": "Select 1 movie/tv show to continue"
+      }
+    },
+    "view": {
+      "infos": {
+        "genres" : "Genres:"
       }
     },
     "index": {

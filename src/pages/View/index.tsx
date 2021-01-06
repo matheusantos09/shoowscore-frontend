@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 
+import { useTranslation } from 'react-i18next';
+
 import { Creators as CreatorsElement } from './ducks/element';
 
 import LoaderCam from '../../components/LoaderCam';
@@ -23,10 +25,11 @@ const View: React.FC = () => {
   const elementView = useElementSelector((state) => state.element);
   const [loading, setLoading] = useState<boolean>(elementView.loading);
   const dispatch = useDispatch();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     dispatch(CreatorsElement.fetchIdElementSaga(type.concat('||').concat(id)));
-  }, [dispatch, type, id]);
+  }, [dispatch, type, id, i18n.language]);
 
   useEffect(() => {
     setLoading(elementView.loading);

@@ -11,6 +11,7 @@ import { Container, ElementView, List, Sidebar } from './styles';
 import { fullPathImages } from '../../utils/fullPathImage';
 import PlaceholderImage from '../PlaceholderImage';
 import { useSearchSelector } from '../../store/reducersRoot/search';
+import { urlWithLang } from '../../utils/urlWithLang';
 
 const SearchList: React.FC = (): any => {
   const defaultImg = useCallback((elementImage): void => {
@@ -80,13 +81,15 @@ const SearchList: React.FC = (): any => {
                       return (
                         <li key={String(item.id)}>
                           <Link
-                            to={`/view/${typeElement.type}/${item.id}/${slugify(
-                              elementName ?? '',
-                              {
-                                lower: true,
-                                remove: /[*+~.()'"!:@]/g,
-                              },
-                            )}`}
+                            to={urlWithLang(
+                              `/view/${typeElement.type}/${item.id}/${slugify(
+                                elementName ?? '',
+                                {
+                                  lower: true,
+                                  remove: /[*+~.()'"!:@]/g,
+                                },
+                              )}`,
+                            )}
                           >
                             <ElementView>
                               {tagComingSoon && (

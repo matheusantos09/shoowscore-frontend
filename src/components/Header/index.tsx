@@ -14,6 +14,7 @@ import Select from '@material-ui/core/Select';
 
 import ptBRFlag from '../../assets/images/flags/ptBR.svg';
 import enENFlag from '../../assets/images/flags/enEN.svg';
+import { urlWithLang } from '../../utils/urlWithLang';
 
 const drawerWidth = 240;
 
@@ -97,7 +98,7 @@ const Index: React.FC = () => {
         <Toolbar className={classes.toolbarTop}>
           <div className={classes.flexLine}>
             <Typography variant="h6" noWrap>
-              <Link to="/" className={classes.link}>
+              <Link to={urlWithLang('')} className={classes.link}>
                 {t('site.name')}
               </Link>
             </Typography>

@@ -3,6 +3,18 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
+import history from './utils/history';
+
+i18n.on('languageChanged', (lng) => {
+  const allPaths = window.location.pathname.split('/');
+
+  if (allPaths[1]) {
+    allPaths[1] = lng;
+  }
+
+  history.push(allPaths.join('/'));
+});
+
 i18n
   .use(Backend)
   .use(LanguageDetector)
@@ -11,12 +23,18 @@ i18n
     lng: 'en',
     fallbackLng: 'en', // use en if detected lng is not available
 
-    debug: true,
+    debug: process.env.NODE_ENV === 'development',
 
     // saveMissing: true, // send not translated keys to endpoint
 
     interpolation: {
       escapeValue: false, // react already safes from xss
+    },
+
+    detection: {
+      order: ['path'],
+      lookupFromPathIndex: 0,
+      checkWhitelist: true,
     },
 
     whitelist: ['en', 'pt'],

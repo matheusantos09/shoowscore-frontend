@@ -58,6 +58,7 @@ export interface RootStateMovie {
     payload: {
       typeResource: string;
       original_title: string;
+      title: string;
       tagline: string;
       backdrop_path: string;
       poster_path: string;

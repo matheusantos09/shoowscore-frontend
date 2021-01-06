@@ -9,6 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { toastError } from '../../utils/toastCustom';
 
 import { Form } from './styles';
+import { urlWithLang } from '../../utils/urlWithLang';
 
 // const suggestion = [{title: '', id: 0}];
 
@@ -49,7 +50,7 @@ const SearchContent: React.FC<Props> = ({ title = true, inputValue = '' }) => {
 
       setLoading(false);
 
-      history.push(`/search/${element}`);
+      history.push(urlWithLang(`/search/${element}`));
     },
     [history, element, t],
   );
