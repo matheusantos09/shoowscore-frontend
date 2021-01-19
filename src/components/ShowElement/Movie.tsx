@@ -2,6 +2,8 @@ import React, { useCallback } from 'react';
 import LazyLoad from 'react-lazyload';
 import { addSeconds, format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 import PlaceholderImage from '../PlaceholderImage';
 import { fullPathImages } from '../../utils/fullPathImage';
@@ -9,12 +11,14 @@ import { convertArrayObjectsInString } from '../../utils/convertArrayObjectsInSt
 import { useElementMovieSelector } from '../../store/reducersRoot/element';
 
 import {
-  BlackSpaceHover,
   BoxImage,
   Container,
   FirstInformation,
+  TitleWrapper,
   Wrapper,
+  WrapperScore,
 } from './styles';
+import { formatNumber } from '../../utils/formatNumber';
 
 const Movie: React.FC = () => {
   const { t } = useTranslation();
@@ -22,6 +26,14 @@ const Movie: React.FC = () => {
 
   console.log('element');
   console.log(element);
+
+  const voteAverage = element.vote_average;
+
+  let voteAveragePercent = Math.round(voteAverage * 10);
+
+  if (voteAveragePercent > 100) {
+    voteAveragePercent = 100;
+  }
 
   const backgroundPath = fullPathImages('original', element.backdrop_path);
   const posterPath = fullPathImages('w300', element.poster_path);
@@ -44,7 +56,7 @@ const Movie: React.FC = () => {
         </LazyLoad>
       </BoxImage>
 
-      <BlackSpaceHover />
+      {/* <BlackSpaceHover /> */}
 
       <Wrapper>
         <FirstInformation>
@@ -75,7 +87,45 @@ const Movie: React.FC = () => {
             </div>
           </div>
         </FirstInformation>
+      </Wrapper>
 
+      <Wrapper>
+        <TitleWrapper>Notas</TitleWrapper>
+
+        <WrapperScore>
+          <CircularProgressbar
+            value={voteAveragePercent}
+            text={`${voteAveragePercent}%`}
+            background
+            backgroundPadding={6}
+            styles={buildStyles({
+              backgroundColor: '#3e98c7',
+              textColor: '#fff',
+              pathColor: '#fff',
+              trailColor: 'transparent',
+            })}
+          />
+
+          <div className="info">
+            <span>Quantidade de votos</span>
+            <span className="value">{formatNumber(element.vote_count)}</span>
+          </div>
+        </WrapperScore>
+      </Wrapper>
+
+      <Wrapper>
+        <TitleWrapper>Atores</TitleWrapper>
+      </Wrapper>
+
+      <Wrapper>
+        <TitleWrapper>Vídeos</TitleWrapper>
+      </Wrapper>
+
+      <Wrapper>
+        <TitleWrapper>Capas</TitleWrapper>
+      </Wrapper>
+
+      <Wrapper>
         <pre>{JSON.stringify(element, null, 2)}</pre>
       </Wrapper>
     </Container>

@@ -30,8 +30,12 @@ export const BlackSpaceHover = styled.div`
 
 export const Wrapper = styled.div`
   padding: 30px;
-  border-radius: 4px;
-  background-color: #303030;
+  border-radius: 6px;
+  background-color: rgba(48, 48, 48, 0.95);
+
+  &:not(:first-child) {
+    margin-top: 80px;
+  }
 `;
 
 export const FirstInformation = styled.div`
@@ -91,3 +95,31 @@ export const FirstInformation = styled.div`
     }
   }
 `;
+
+export const TitleWrapper = styled.p``
+
+export const WrapperScore = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    margin-right: 40px;
+    max-width: 120px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      font-size: 16px;
+
+      &.value {
+        font-size: 28px;
+        font-weight: 500;
+      }
+    }
+  }
+`

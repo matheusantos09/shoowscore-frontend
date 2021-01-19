@@ -65,6 +65,8 @@ export interface RootStateMovie {
       overview: string;
       runtime?: number;
       genres: [];
+      vote_average: number;
+      vote_count: number;
     };
   };
 }
