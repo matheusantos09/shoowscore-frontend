@@ -96,7 +96,16 @@ export const FirstInformation = styled.div`
   }
 `;
 
-export const TitleWrapper = styled.p``
+export const TitleWrapper = styled.p`
+  font-size: 30px;
+  text-align: center;
+  margin: 0 0 30px 0;
+  font-weight: 500;
+`
+
+export const WrapperContent = styled.div`
+  display: block;
+`
 
 export const WrapperScore = styled.div`
   display: flex;
@@ -121,5 +130,14 @@ export const WrapperScore = styled.div`
         font-weight: 500;
       }
     }
+  }
+`
+
+export const ActorContainer = styled.div`
+  max-width: 200px;
+
+  img {
+    max-width: 100%;
+    width: auto;
   }
 `

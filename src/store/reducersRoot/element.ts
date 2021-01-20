@@ -67,6 +67,14 @@ export interface RootStateMovie {
       genres: [];
       vote_average: number;
       vote_count: number;
+      credits: {
+        cast: Array<{
+          id: number;
+          name: string;
+          profile_path: string;
+        }>;
+        crew: [];
+      };
     };
   };
 }

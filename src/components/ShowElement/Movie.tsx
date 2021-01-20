@@ -3,7 +3,11 @@ import LazyLoad from 'react-lazyload';
 import { addSeconds, format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import Slider from 'react-slick';
+
 import 'react-circular-progressbar/dist/styles.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import PlaceholderImage from '../PlaceholderImage';
 import { fullPathImages } from '../../utils/fullPathImage';
@@ -11,11 +15,13 @@ import { convertArrayObjectsInString } from '../../utils/convertArrayObjectsInSt
 import { useElementMovieSelector } from '../../store/reducersRoot/element';
 
 import {
+  ActorContainer,
   BoxImage,
   Container,
   FirstInformation,
   TitleWrapper,
   Wrapper,
+  WrapperContent,
   WrapperScore,
 } from './styles';
 import { formatNumber } from '../../utils/formatNumber';
@@ -23,26 +29,33 @@ import { formatNumber } from '../../utils/formatNumber';
 const Movie: React.FC = () => {
   const { t } = useTranslation();
   const element = useElementMovieSelector((state) => state.element.payload);
-
-  console.log('element');
-  console.log(element);
-
   const voteAverage = element.vote_average;
-
+  const casts = element.credits.cast.splice(0, 10);
   let voteAveragePercent = Math.round(voteAverage * 10);
 
   if (voteAveragePercent > 100) {
     voteAveragePercent = 100;
   }
 
-  const backgroundPath = fullPathImages('original', element.backdrop_path);
-  const posterPath = fullPathImages('w300', element.poster_path);
+  const backgroundPath = fullPathImages(element.backdrop_path, 'original');
+  const posterPath = fullPathImages(element.poster_path, 'w300');
   const defaultImg = useCallback((elementImage, sizeDefault = '250/375'):
     | void
     | undefined => {
     // eslint-disable-next-line no-param-reassign
     elementImage.target.src = `https://picsum.photos/${sizeDefault}`;
   }, []);
+  const settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 3,
+  };
+
+  console.log('element');
+  console.log(element);
 
   return (
     <Container>
@@ -90,39 +103,60 @@ const Movie: React.FC = () => {
       </Wrapper>
 
       <Wrapper>
-        <TitleWrapper>Notas</TitleWrapper>
+        <TitleWrapper>{t('pages.view.infos.score.title')}</TitleWrapper>
 
-        <WrapperScore>
-          <CircularProgressbar
-            value={voteAveragePercent}
-            text={`${voteAveragePercent}%`}
-            background
-            backgroundPadding={6}
-            styles={buildStyles({
-              backgroundColor: '#3e98c7',
-              textColor: '#fff',
-              pathColor: '#fff',
-              trailColor: 'transparent',
-            })}
-          />
+        <WrapperContent>
+          <WrapperScore>
+            <CircularProgressbar
+              value={voteAveragePercent}
+              text={`${voteAveragePercent}%`}
+              background
+              backgroundPadding={6}
+              styles={buildStyles({
+                backgroundColor: '#3e98c7',
+                textColor: '#fff',
+                pathColor: '#fff',
+                trailColor: 'transparent',
+              })}
+            />
 
-          <div className="info">
-            <span>Quantidade de votos</span>
-            <span className="value">{formatNumber(element.vote_count)}</span>
-          </div>
-        </WrapperScore>
+            <div className="info">
+              <span>{t('pages.view.infos.score.quantity')}</span>
+              <span className="value">{formatNumber(element.vote_count)}</span>
+            </div>
+          </WrapperScore>
+        </WrapperContent>
       </Wrapper>
 
       <Wrapper>
-        <TitleWrapper>Atores</TitleWrapper>
+        <TitleWrapper>{t('pages.view.infos.actors.title')}</TitleWrapper>
+        <WrapperContent>
+          <Slider {...settings}>
+            {casts.map((item) => (
+              <ActorContainer>
+                <LazyLoad placeholder={<PlaceholderImage />}>
+                  <img
+                    onError={(e) => defaultImg(e, '1920/1080')}
+                    src={fullPathImages(item.profile_path, 'w300')}
+                    alt={item.name}
+                  />
+                </LazyLoad>
+
+                <div className="infos">{item.name}</div>
+              </ActorContainer>
+            ))}
+          </Slider>
+        </WrapperContent>
       </Wrapper>
 
       <Wrapper>
-        <TitleWrapper>Vídeos</TitleWrapper>
+        <TitleWrapper>{t('pages.view.infos.videos.title')}</TitleWrapper>
+        <WrapperContent>1</WrapperContent>
       </Wrapper>
 
       <Wrapper>
-        <TitleWrapper>Capas</TitleWrapper>
+        <TitleWrapper>{t('pages.view.infos.images.title')}</TitleWrapper>
+        <WrapperContent>1</WrapperContent>
       </Wrapper>
 
       <Wrapper>

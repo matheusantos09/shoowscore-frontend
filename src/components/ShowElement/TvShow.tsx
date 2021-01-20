@@ -22,8 +22,8 @@ const TvShow: React.FC = () => {
   const { t } = useTranslation();
   const element = useElementSelector((state) => state.element);
 
-  const backgroundPath = fullPathImages('original', element.backdrop_path);
-  const posterPath = fullPathImages('w300', element.poster_path);
+  const backgroundPath = fullPathImages(element.backdrop_path, 'original');
+  const posterPath = fullPathImages(element.poster_path, 'w300');
   const defaultImg = useCallback((elementImage, sizeDefault = '250/375'):
     | void
     | undefined => {
@@ -55,7 +55,7 @@ const TvShow: React.FC = () => {
                 {element.networks.map((network) => (
                   <img
                     onError={(e) => defaultImg(e, '45/45')}
-                    src={fullPathImages('w45', network.logo_path)}
+                    src={fullPathImages(network.logo_path, 'w45')}
                     alt={`${network.name} - ${network.origin_country}`}
                   />
                 ))}
