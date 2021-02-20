@@ -11,6 +11,7 @@ import { Creators as CreatorsSearch } from '../../Search/ducks/search';
 import {
   fetchElementById,
   fetchElementByTitle,
+  fetchEpisodesSeasonElement,
 } from '../../../services/endpoints';
 import i18n from '../../../i18n';
 
@@ -78,8 +79,45 @@ function* sagaFetchIdElement(action: TypeActionElement): any {
   }
 }
 
+function* sagaFetchEpisodesSeasonElement(action: TypeActionElement): any {
+  try {
+    const { response, timeout } = yield race({
+      response: call(
+        fetchEpisodesSeasonElement,
+        action.elementId,
+        action.seasonMax,
+      ),
+      timeout: delay(TIMEOUT),
+    });
+
+    if (timeout) {
+      yield put(
+        CreatorsElement.fetchElementError(i18n.t('api.errors.timeout')),
+      );
+
+      return;
+    }
+
+    if (response.status < 300) {
+      yield put(CreatorsElement.fetchElementSuccess(response.data));
+    } else {
+      yield put(
+        CreatorsElement.fetchElementError(i18n.t('api.errors.code300')),
+      );
+    }
+  } catch (e) {
+    // yield put(CreatorsElement.fetchElementError(i18n.t('api.errors.fatal')));
+    // yield console.log(e);
+  }
+}
+
 export default function* rootSaga(): any {
   return yield all([
+    yield takeLatest(
+      // @ts-ignore
+      TypesElement.FETCH_EPISODES_SEASON_ELEMENT_SAGA,
+      sagaFetchEpisodesSeasonElement,
+    ),
     yield takeLatest(
       // @ts-ignore
       TypesElement.FETCH_ELEMENT_SAGA,

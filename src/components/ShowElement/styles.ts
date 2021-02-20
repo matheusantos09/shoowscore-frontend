@@ -19,15 +19,6 @@ export const BoxImage = styled.div`
   }
 `;
 
-export const BlackSpaceHover = styled.div`
-  height: 200px;
-  transition: 0.3s ease-in-out;
-
-  &:hover {
-    height: 400px;
-  }
-`;
-
 export const Wrapper = styled.div`
   padding: 30px;
   border-radius: 6px;
@@ -130,14 +121,5 @@ export const WrapperScore = styled.div`
         font-weight: 500;
       }
     }
-  }
-`
-
-export const ActorContainer = styled.div`
-  max-width: 200px;
-
-  img {
-    max-width: 100%;
-    width: auto;
   }
 `

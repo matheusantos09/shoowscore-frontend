@@ -18,6 +18,8 @@ export interface TypeAction {
       total_results: number;
     };
   };
+  seasonMax: string;
+  elementId: string;
   msg?: string;
 }
 
@@ -28,6 +30,9 @@ export const { Types, Creators } = createActions({
   fetchElementError: ['msg'],
   fetchIdElement: ['typeId'],
   fetchIdElementSaga: ['typeId'],
+  fetchEpisodesSeasonElementSaga: ['elementId', 'seasonMax'],
+  fetchEpisodesSeasonElementSuccess: ['seasonEpisodes'],
+  fetchEpisodesSeasonElementError: ['errors'],
 });
 
 const INITIAL_STATE = {
@@ -61,4 +66,6 @@ const fetchError = (
 export default createReducer(INITIAL_STATE, {
   [Types.FETCH_ELEMENT_SUCCESS]: fetchSuccess,
   [Types.FETCH_ELEMENT_ERROR]: fetchError,
+  [Types.FETCH_EPISODES_SEASON_ELEMENT_SUCCESS]: () => {},
+  [Types.FETCH_EPISODES_SEASON_ELEMENT_ERROR]: () => {},
 });

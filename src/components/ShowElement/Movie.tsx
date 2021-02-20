@@ -14,8 +14,9 @@ import { fullPathImages } from '../../utils/fullPathImage';
 import { convertArrayObjectsInString } from '../../utils/convertArrayObjectsInString';
 import { useElementMovieSelector } from '../../store/reducersRoot/element';
 
+import ActorContainer from '../ActorContainer';
+
 import {
-  ActorContainer,
   BoxImage,
   Container,
   FirstInformation,
@@ -30,7 +31,7 @@ const Movie: React.FC = () => {
   const { t } = useTranslation();
   const element = useElementMovieSelector((state) => state.element.payload);
   const voteAverage = element.vote_average;
-  const casts = element.credits.cast.splice(0, 10);
+  const casts = element.credits.cast.slice(0, 10);
   let voteAveragePercent = Math.round(voteAverage * 10);
 
   if (voteAveragePercent > 100) {
@@ -54,9 +55,6 @@ const Movie: React.FC = () => {
     slidesToScroll: 3,
   };
 
-  console.log('element');
-  console.log(element);
-
   return (
     <Container>
       <BoxImage>
@@ -68,8 +66,6 @@ const Movie: React.FC = () => {
           />
         </LazyLoad>
       </BoxImage>
-
-      {/* <BlackSpaceHover /> */}
 
       <Wrapper>
         <FirstInformation>
@@ -133,23 +129,17 @@ const Movie: React.FC = () => {
         <WrapperContent>
           <Slider {...settings}>
             {casts.map((item) => (
-              <ActorContainer>
-                <LazyLoad placeholder={<PlaceholderImage />}>
-                  <img
-                    onError={(e) => defaultImg(e, '1920/1080')}
-                    src={fullPathImages(item.profile_path, 'w300')}
-                    alt={item.name}
-                  />
-                </LazyLoad>
-
-                <div className="infos">{item.name}</div>
-              </ActorContainer>
+              <ActorContainer
+                profile_path={item.profile_path}
+                name={item.name}
+                character={item.character}
+              />
             ))}
           </Slider>
         </WrapperContent>
       </Wrapper>
 
-      <Wrapper>
+      {/* <Wrapper>
         <TitleWrapper>{t('pages.view.infos.videos.title')}</TitleWrapper>
         <WrapperContent>1</WrapperContent>
       </Wrapper>
@@ -162,6 +152,7 @@ const Movie: React.FC = () => {
       <Wrapper>
         <pre>{JSON.stringify(element, null, 2)}</pre>
       </Wrapper>
+       */}
     </Container>
   );
 };

@@ -13,3 +13,14 @@ export function fetchElementById(typeId: string): any {
 
   return apiDataBase.get(`/${type}/${id}`);
 }
+
+export function fetchEpisodesSeasonElement(
+  elementId: string,
+  seasonMax: string,
+): any {
+  if (!elementId && !seasonMax) {
+    throw new Error('Args not send');
+  }
+
+  return apiDataBase.get(`/tv/${elementId}/seasons/${seasonMax}`);
+}

@@ -34,6 +34,7 @@ export interface RootStateTvShow {
       typeResource: string;
       original_title?: string;
       name?: string;
+      tagline: string;
       backdrop_path: string;
       poster_path: string;
       overview: string;
@@ -44,6 +45,17 @@ export interface RootStateTvShow {
         logo_path: string;
         origin_country: string;
       }>;
+      vote_average: number;
+      vote_count: number;
+      credits: {
+        cast: Array<{
+          id: number;
+          name: string;
+          character: string;
+          profile_path: string;
+        }>;
+        crew: [];
+      };
     };
   };
 }
@@ -71,6 +83,7 @@ export interface RootStateMovie {
         cast: Array<{
           id: number;
           name: string;
+          character: string;
           profile_path: string;
         }>;
         crew: [];
