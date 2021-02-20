@@ -4,7 +4,7 @@ import i18n from '../i18n';
 import { defaultLanguage, languages } from '../configs/languages-api';
 
 const apiDataBase = axios.create({
-  baseURL: 'http://localhost:3333/api',
+  baseURL: 'http://localhost:3333/api/v1',
 });
 
 apiDataBase.interceptors.request.use((config) => {
