@@ -24,7 +24,7 @@
     "highcharts": "^9.0.1",
     "highcharts-react-official": "^3.0.0",
     "history": "^5.0.0",
-    "i18next": "^19.8.9",
+    "i18next": "^19.9.0",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.1.0",
     "lodash": "^4.17.20",
