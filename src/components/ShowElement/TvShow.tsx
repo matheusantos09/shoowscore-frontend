@@ -1,21 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
 import { addSeconds, format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import Slider from 'react-slick';
 import { useDispatch } from 'react-redux';
+import _ from 'lodash';
 
 import 'react-circular-progressbar/dist/styles.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 import PlaceholderImage from '../PlaceholderImage';
 import { fullPathImages } from '../../utils/fullPathImage';
 import { convertArrayObjectsInString } from '../../utils/convertArrayObjectsInString';
 import { useElementTvShowSelector } from '../../store/reducersRoot/element';
 
 import ActorContainer from '../ActorContainer';
+import RatingChart from './RatingChart';
 
 import {
   BoxImage,
@@ -30,7 +31,6 @@ import { formatNumber } from '../../utils/formatNumber';
 import { Creators as CreatorsElement } from '../../pages/View/ducks/element';
 
 const TvShow: React.FC = () => {
-  const [seasonsEpisodes, setSeasonsEpisodes] = useState();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const element = useElementTvShowSelector((state) => state.element.payload);
@@ -53,23 +53,29 @@ const TvShow: React.FC = () => {
   const settings = {
     dots: true,
     arrows: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 3,
   };
 
   useEffect(() => {
-    console.log('Teste');
-    console.log('Teste');
-    console.log('Teste');
-    dispatch(
-      CreatorsElement.fetchEpisodesSeasonElementSaga('aasda', 'asdasdas'),
-    );
-  }, [dispatch]);
+    const lastNumberSeason = _.last(element.seasons);
+    let numberSeasonMax;
 
-  console.log('element');
-  console.log(element);
+    if (!lastNumberSeason) {
+      numberSeasonMax = 12;
+    } else {
+      numberSeasonMax = lastNumberSeason.season_number;
+    }
+
+    dispatch(
+      CreatorsElement.fetchEpisodesSeasonElementSaga(
+        element.id,
+        numberSeasonMax,
+      ),
+    );
+  }, [dispatch, element]);
 
   return (
     <Container>
@@ -112,6 +118,14 @@ const TvShow: React.FC = () => {
             </div>
           </div>
         </FirstInformation>
+      </Wrapper>
+
+      <Wrapper>
+        <TitleWrapper>{t('pages.view.infos.rating.title')}</TitleWrapper>
+
+        <WrapperContent>
+          <RatingChart />
+        </WrapperContent>
       </Wrapper>
 
       <Wrapper>

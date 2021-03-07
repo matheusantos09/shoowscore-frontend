@@ -53,6 +53,9 @@
           "title": "Score",
           "quantity": "Number of votes"
         },
+        "rating": {
+          "title": "Notas por episódios"
+        },
         "videos": {
           "title": "Videos"
         },

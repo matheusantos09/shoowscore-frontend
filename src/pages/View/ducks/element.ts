@@ -13,6 +13,7 @@ export interface TypeAction {
   element: {
     payload: {};
   };
+  seasonEpisodes: {};
   elements: {
     payload: {
       total_results: number;
@@ -32,7 +33,7 @@ export const { Types, Creators } = createActions({
   fetchIdElementSaga: ['typeId'],
   fetchEpisodesSeasonElementSaga: ['elementId', 'seasonMax'],
   fetchEpisodesSeasonElementSuccess: ['seasonEpisodes'],
-  fetchEpisodesSeasonElementError: ['errors'],
+  fetchEpisodesSeasonElementError: ['msg'],
 });
 
 const INITIAL_STATE = {
@@ -40,6 +41,12 @@ const INITIAL_STATE = {
   error: false,
   msgError: '',
   payload: {},
+  episodes: {
+    loading: false,
+    error: false,
+    msgError: '',
+    payload: {},
+  },
 };
 
 const fetchSuccess = (
@@ -63,9 +70,34 @@ const fetchError = (
   msgError: action.msg,
 });
 
+const fetchSeasonEpisodesSuccess = (
+  state: InitialState = INITIAL_STATE,
+  action: TypeAction,
+): any => ({
+  ...state,
+  episodes: {
+    loading: false,
+    error: false,
+    payload: action.seasonEpisodes,
+  },
+});
+
+const fetchSeasonEpisodesError = (
+  state: InitialState = INITIAL_STATE,
+  action: TypeAction,
+): any => ({
+  ...state,
+  episodes: {
+    loading: false,
+    error: true,
+    msgError: action.msg,
+    payload: {},
+  },
+});
+
 export default createReducer(INITIAL_STATE, {
   [Types.FETCH_ELEMENT_SUCCESS]: fetchSuccess,
   [Types.FETCH_ELEMENT_ERROR]: fetchError,
-  [Types.FETCH_EPISODES_SEASON_ELEMENT_SUCCESS]: () => {},
-  [Types.FETCH_EPISODES_SEASON_ELEMENT_ERROR]: () => {},
+  [Types.FETCH_EPISODES_SEASON_ELEMENT_SUCCESS]: fetchSeasonEpisodesSuccess,
+  [Types.FETCH_EPISODES_SEASON_ELEMENT_ERROR]: fetchSeasonEpisodesError,
 });

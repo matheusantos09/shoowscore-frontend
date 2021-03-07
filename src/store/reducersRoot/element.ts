@@ -31,6 +31,7 @@ export interface RootStateTvShow {
     error: boolean;
     msgError: '';
     payload: {
+      id: number;
       typeResource: string;
       original_title?: string;
       name?: string;
@@ -44,6 +45,9 @@ export interface RootStateTvShow {
         name: string;
         logo_path: string;
         origin_country: string;
+      }>;
+      seasons: Array<{
+        season_number: number;
       }>;
       vote_average: number;
       vote_count: number;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   max-width: 200px;
+  margin: 0 auto;
 
   img {
     max-width: 100%;
@@ -21,7 +22,8 @@ export const Container = styled.div`
     border-radius: 0 0 8px 8px;
     padding: 4px 0;
 
-    span {}
+    span {
+    }
 
     small {
       margin-top: 2px;

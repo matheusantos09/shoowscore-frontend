@@ -92,22 +92,35 @@ function* sagaFetchEpisodesSeasonElement(action: TypeActionElement): any {
 
     if (timeout) {
       yield put(
-        CreatorsElement.fetchElementError(i18n.t('api.errors.timeout')),
+        CreatorsElement.fetchEpisodesSeasonElementError(
+          i18n.t('api.errors.timeout'),
+        ),
       );
 
       return;
     }
 
     if (response.status < 300) {
-      yield put(CreatorsElement.fetchElementSuccess(response.data));
+      console.log(response);
+      console.log(response.data);
+
+      yield put(
+        CreatorsElement.fetchEpisodesSeasonElementSuccess(response.data),
+      );
     } else {
       yield put(
-        CreatorsElement.fetchElementError(i18n.t('api.errors.code300')),
+        CreatorsElement.fetchEpisodesSeasonElementError(
+          i18n.t('api.errors.code300'),
+        ),
       );
     }
   } catch (e) {
-    // yield put(CreatorsElement.fetchElementError(i18n.t('api.errors.fatal')));
-    // yield console.log(e);
+    yield put(
+      CreatorsElement.fetchEpisodesSeasonElementError(
+        i18n.t('api.errors.fatal'),
+      ),
+    );
+    yield console.log(e);
   }
 }
 

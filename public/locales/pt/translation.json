@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "ShoowScore-PT_BR",
+    "name": "ShoowScore",
     "description": "Finding what you wanted to watch on your night",
     "shortDescription": "Find the not found"
   },
@@ -48,7 +48,20 @@
     },
     "view": {
       "infos": {
-        "genres" : "Genres:"
+        "genres": "Genres:",
+        "score": {
+          "title": "Score",
+          "quantity": "Number of votes"
+        },
+        "videos": {
+          "title": "Videos"
+        },
+        "images": {
+          "title": "Images for download"
+        },
+        "actors": {
+          "title": "Actors"
+        }
       }
     },
     "index": {
