@@ -1,0 +1,115 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  target-branch: dev
+  ignore:
+  - dependency-name: react-i18next
+    versions:
+    - 11.8.10
+    - 11.8.11
+    - 11.8.12
+    - 11.8.13
+    - 11.8.14
+    - 11.8.8
+    - 11.8.9
+  - dependency-name: "@testing-library/user-event"
+    versions:
+    - 12.6.2
+    - 12.6.3
+    - 12.7.0
+    - 12.7.1
+    - 12.7.2
+    - 12.7.3
+    - 12.8.0
+    - 12.8.1
+    - 12.8.3
+    - 13.0.0
+    - 13.0.1
+    - 13.0.10
+    - 13.0.13
+    - 13.0.16
+    - 13.0.2
+    - 13.0.6
+    - 13.0.7
+    - 13.1.1
+    - 13.1.2
+    - 13.1.3
+    - 13.1.5
+  - dependency-name: eslint-config-prettier
+    versions:
+    - 8.0.0
+    - 8.1.0
+    - 8.2.0
+  - dependency-name: i18next
+    versions:
+    - 19.9.0
+    - 19.9.1
+    - 19.9.2
+    - 20.0.0
+    - 20.1.0
+    - 20.2.1
+  - dependency-name: "@typescript-eslint/eslint-plugin"
+    versions:
+    - 4.14.1
+    - 4.14.2
+    - 4.15.0
+    - 4.15.1
+    - 4.15.2
+    - 4.16.1
+    - 4.17.0
+    - 4.18.0
+    - 4.19.0
+    - 4.20.0
+    - 4.21.0
+  - dependency-name: "@typescript-eslint/parser"
+    versions:
+    - 4.14.1
+    - 4.14.2
+    - 4.15.0
+    - 4.15.1
+    - 4.15.2
+    - 4.16.1
+    - 4.17.0
+    - 4.18.0
+    - 4.19.0
+    - 4.20.0
+    - 4.21.0
+  - dependency-name: typescript
+    versions:
+    - 4.2.2
+    - 4.2.3
+  - dependency-name: slugify
+    versions:
+    - 1.4.7
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.22
+    - 14.14.24
+    - 14.14.25
+    - 14.14.26
+    - 14.14.28
+    - 14.14.30
+  - dependency-name: react-toastify
+    versions:
+    - 7.0.2
+    - 7.0.3
+  - dependency-name: i18next-http-backend
+    versions:
+    - 1.0.24
+    - 1.1.0
+  - dependency-name: react-slick
+    versions:
+    - 0.28.0
+  - dependency-name: "@material-ui/core"
+    versions:
+    - 4.11.3
+  - dependency-name: "@types/react-redux"
+    versions:
+    - 7.1.16
+  - dependency-name: "@types/lodash"
+    versions:
+    - 4.14.168
