@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-//@TODO Terminar a implementação com o highchart e colocar drilldown quando estiver no mobile, no desktop será usada a versão completa do grafico.
+// @TODO Terminar a implementação com o highchart e colocar drilldown quando estiver no mobile, no desktop será usada a versão completa do grafico.
 const options = {
   chart: {
     type: 'column',
@@ -56,11 +56,11 @@ const options = {
 
 const RatingChart: React.FC = (props: HighchartsReact.Props) => {
   useEffect(() => {
-    const chartConfig = Object.assign({}, options);
+    const chartConfig = { ...options };
 
     const sortedData = props.data
-      .map((item) => Object.assign({}, item))
-      .sort((a, b) => {
+      .map((item: any) => ({ ...item }))
+      .sort((a: any, b: any) => {
         const ax = a.targetPeriod.toUpperCase();
         const bx = b.targetPeriod.toUpperCase();
         if (ax === bx) {

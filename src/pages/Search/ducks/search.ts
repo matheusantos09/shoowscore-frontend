@@ -19,6 +19,7 @@ export const { Types, Creators } = createActions({
   fetchSearchSaga: ['query'],
   fetchSuccess: ['payload'],
   fetchError: ['payload'],
+  stateLoading: [],
 });
 
 const INITIAL_STATE = {
@@ -49,7 +50,16 @@ const fetchError = (
   msgError: action.msg,
 });
 
+const stateLoading = (state: InitialState = INITIAL_STATE): any => ({
+  ...state,
+  payload: {},
+  loading: true,
+  error: false,
+  msgError: '',
+});
+
 export default createReducer(INITIAL_STATE, {
   [Types.FETCH_SUCCESS]: fetchSuccess,
   [Types.FETCH_ERROR]: fetchError,
+  [Types.STATE_LOADING]: stateLoading,
 });

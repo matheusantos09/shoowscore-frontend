@@ -12,6 +12,8 @@ const TIMEOUT = 20000;
 
 function* fetchSearchSaga(action: TypeActionSearch): any {
   try {
+    yield put(CreatorsSearch.stateLoading());
+
     const { response, timeout } = yield race({
       response: call(fetchElementByTitle, action.query),
       timeout: delay(TIMEOUT),

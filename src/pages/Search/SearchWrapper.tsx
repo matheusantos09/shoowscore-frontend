@@ -8,6 +8,7 @@ import { Creators as CreatorsSearch } from './ducks/search';
 import SearchList from '../../components/SearchList';
 import NotFoundSearch from '../../components/NotFoundSearch';
 import { useSearchSelector } from '../../store/reducersRoot/search';
+import SearchLoader from '../../components/SearchList/SearchLoader';
 
 interface UrlParams {
   elementName: string;
@@ -24,11 +25,20 @@ const SearchWrapper: React.FC = () => {
     dispatch(CreatorsSearch.fetchSearchSaga(elementName));
   }, [dispatch, elementName]);
 
+  console.log(searchView);
+
+  searchView.loading = true;
+
   return (
     <>
-      {!_.isEmpty(searchView.payload) ? <SearchList /> : null}
-
-      {_.isEmpty(searchView.payload) ? <NotFoundSearch /> : null}
+      {!searchView.loading ? (
+        <>
+          {!_.isEmpty(searchView.payload) ? <SearchList /> : null}
+          {_.isEmpty(searchView.payload) ? <NotFoundSearch /> : null}
+        </>
+      ) : (
+        <SearchLoader />
+      )}
     </>
   );
 };
