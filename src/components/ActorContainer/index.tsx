@@ -15,12 +15,13 @@ interface Props {
 const ActorContainer: React.FC<Props> = (props) => {
   const { profile_path, name, character } = props;
 
-  const defaultImg = useCallback((elementImage, sizeDefault = '250/375'):
-    | void
-    | undefined => {
-    // eslint-disable-next-line no-param-reassign
-    elementImage.target.src = `https://picsum.photos/${sizeDefault}`;
-  }, []);
+  const defaultImg = useCallback(
+    (elementImage, sizeDefault = '250/375'): void | undefined => {
+      // eslint-disable-next-line no-param-reassign
+      elementImage.target.src = `https://picsum.photos/${sizeDefault}`;
+    },
+    [],
+  );
 
   return (
     <Container>

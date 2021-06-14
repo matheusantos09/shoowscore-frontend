@@ -64,7 +64,8 @@ export interface RootStateTvShow {
   };
 }
 
-export const useElementTvShowSelector: TypedUseSelectorHook<RootStateTvShow> = useSelector;
+export const useElementTvShowSelector: TypedUseSelectorHook<RootStateTvShow> =
+  useSelector;
 
 export interface RootStateMovie {
   element: {
@@ -96,4 +97,5 @@ export interface RootStateMovie {
   };
 }
 
-export const useElementMovieSelector: TypedUseSelectorHook<RootStateMovie> = useSelector;
+export const useElementMovieSelector: TypedUseSelectorHook<RootStateMovie> =
+  useSelector;

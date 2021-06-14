@@ -44,12 +44,13 @@ const TvShow: React.FC = () => {
 
   const backgroundPath = fullPathImages(element.backdrop_path, 'original');
   const posterPath = fullPathImages(element.poster_path, 'w300');
-  const defaultImg = useCallback((elementImage, sizeDefault = '250/375'):
-    | void
-    | undefined => {
-    // eslint-disable-next-line no-param-reassign
-    elementImage.target.src = `https://picsum.photos/${sizeDefault}`;
-  }, []);
+  const defaultImg = useCallback(
+    (elementImage, sizeDefault = '250/375'): void | undefined => {
+      // eslint-disable-next-line no-param-reassign
+      elementImage.target.src = `https://picsum.photos/${sizeDefault}`;
+    },
+    [],
+  );
   const settings = {
     dots: true,
     arrows: false,
