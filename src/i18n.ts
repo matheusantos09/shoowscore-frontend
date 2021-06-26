@@ -15,6 +15,7 @@ i18n.on('languageChanged', (lng) => {
   history.push(allPaths.join('/'));
 });
 
+// @ts-ignore
 i18n
   .use(Backend)
   .use(LanguageDetector)
