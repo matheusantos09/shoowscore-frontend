@@ -21,6 +21,9 @@ const SearchList: React.FC = (): any => {
   const { t } = useTranslation();
   const search = useSearchSelector((state) => state.search);
 
+  console.log('SearchList');
+  console.log(search);
+
   return (
     <>
       <Container>

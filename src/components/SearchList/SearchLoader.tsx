@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-import { Container, List, Sidebar } from './styles';
+import { Container, Sidebar } from './styles';
 
 const SearchLoader: React.FC = () => {
   return (
@@ -11,12 +11,11 @@ const SearchLoader: React.FC = () => {
           <li>
             <ContentLoader
               speed={2}
-              width={100}
-              height={15}
-              viewBox="0 0 400 460"
+              width={400}
+              height={160}
+              viewBox="0 0 400 160"
               backgroundColor="#f3f3f3"
               foregroundColor="#ecebeb"
-              style={{ width: '100%' }}
             >
               <rect x="0" y="22" rx="0" ry="0" width="173" height="15" />
               <rect x="0" y="44" rx="0" ry="0" width="173" height="15" />
@@ -24,10 +23,6 @@ const SearchLoader: React.FC = () => {
           </li>
         </ul>
       </Sidebar>
-
-      <List>
-        <li className="type">1</li>
-      </List>
     </Container>
   );
 };

@@ -25,9 +25,10 @@ const SearchWrapper: React.FC = () => {
     dispatch(CreatorsSearch.fetchSearchSaga(elementName));
   }, [dispatch, elementName]);
 
+  console.log('searchView');
   console.log(searchView);
 
-  searchView.loading = true;
+  // searchView.loading = true;
 
   return (
     <>
