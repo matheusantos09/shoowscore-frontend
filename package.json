@@ -50,7 +50,7 @@
     "slugify": "^1.5.3",
     "styled-components": "^5.3.0",
     "typeface-roboto": "^1.1.13",
-    "typescript": "4.3.4"
+    "typescript": "4.3.5"
   },
   "scripts": {
     "start": "react-scripts start",
