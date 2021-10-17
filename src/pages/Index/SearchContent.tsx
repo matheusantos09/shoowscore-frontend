@@ -14,8 +14,8 @@ import { urlWithLang } from '../../utils/urlWithLang';
 // const suggestion = [{title: '', id: 0}];
 
 interface Props {
-  title?: boolean;
-  inputValue?: string;
+  title: boolean;
+  inputValue: string;
 }
 
 const SearchContent: React.FC<Props> = ({ title = true, inputValue = '' }) => {

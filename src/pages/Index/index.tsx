@@ -19,7 +19,7 @@ const Index: React.FC = () => {
   return (
     <>
       <div className={classes.search}>
-        <SearchContent />
+        <SearchContent title inputValue="" />
       </div>
     </>
   );
