@@ -4,10 +4,11 @@ import { addSeconds, format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/swiper.min.css';
+import 'swiper/swiper.scss';
+import 'swiper/modules/navigation/navigation.scss';
+import 'swiper/modules/pagination/pagination.scss';
 
 import 'react-circular-progressbar/dist/styles.css';
 

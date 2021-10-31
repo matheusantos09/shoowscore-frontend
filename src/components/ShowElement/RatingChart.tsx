@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
@@ -55,21 +55,6 @@ const options = {
 };
 
 const RatingChart: React.FC = (props: HighchartsReact.Props) => {
-  useEffect(() => {
-    const chartConfig = { ...options };
-
-    const sortedData = props.data
-      .map((item: any) => ({ ...item }))
-      .sort((a: any, b: any) => {
-        const ax = a.targetPeriod.toUpperCase();
-        const bx = b.targetPeriod.toUpperCase();
-        if (ax === bx) {
-          return 0;
-        }
-        return ax < bx ? -1 : 1;
-      });
-  }, []);
-
   return (
     <div>
       <HighchartsReact highcharts={Highcharts} options={options} {...props} />
