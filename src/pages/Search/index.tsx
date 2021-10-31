@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import Typography from '@material-ui/core/Typography';
 import { useTranslation } from 'react-i18next';
 
-import SearchContent from '../Index/SearchContent';
+import SearchBlock from '../../components/SearchBlock';
+import Typography from '../../components/Generals/Typography';
 import SearchWrapper from './SearchWrapper';
 
 interface UrlParams {
@@ -18,16 +18,11 @@ const Search: React.FC = () => {
 
   return (
     <>
-      <Typography
-        component="h2"
-        variant="h5"
-        align="center"
-        color="textPrimary"
-      >
+      <Typography className="h5">
         {t('pages.search.manyAlternatives.default')}
       </Typography>
 
-      <SearchContent title={false} inputValue={elementName} />
+      <SearchBlock title={false} inputValue={elementName} />
 
       <SearchWrapper />
     </>

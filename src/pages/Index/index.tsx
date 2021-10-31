@@ -1,28 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-
-import SearchContent from './SearchContent';
-
-const useStyles = makeStyles((theme) => ({
-  search: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(4),
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-}));
+import SearchBlock from '../../components/SearchBlock';
 
 const Index: React.FC = () => {
-  const classes = useStyles();
-
-  return (
-    <>
-      <div className={classes.search}>
-        <SearchContent title inputValue="" />
-      </div>
-    </>
-  );
+  return <SearchBlock title inputValue="" />;
 };
 
 export default Index;

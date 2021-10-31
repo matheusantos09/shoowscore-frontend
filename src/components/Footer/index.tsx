@@ -1,23 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
 import { site } from '../../configs/site-env';
-
-const useStyles = makeStyles((theme) => ({
-  footer: {
-    padding: theme.spacing(4),
-  },
-}));
+import Typography from '../Generals/Typography';
 
 const Index: React.FC = () => {
   const { t } = useTranslation();
-  const classes = useStyles();
 
   return (
-    <footer className={classes.footer}>
+    <footer>
       <Typography
         variant="subtitle1"
         align="center"

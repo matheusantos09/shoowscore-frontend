@@ -3,13 +3,15 @@ import LazyLoad from 'react-lazyload';
 import { addSeconds, format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import Slider from 'react-slick';
 import { useDispatch } from 'react-redux';
 import _ from 'lodash';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
 
 import 'react-circular-progressbar/dist/styles.css';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
+
 import PlaceholderImage from '../PlaceholderImage';
 import { fullPathImages } from '../../utils/fullPathImage';
 import { convertArrayObjectsInString } from '../../utils/convertArrayObjectsInString';
@@ -51,14 +53,6 @@ const TvShow: React.FC = () => {
     },
     [],
   );
-  const settings = {
-    dots: true,
-    arrows: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 3,
-  };
 
   useEffect(() => {
     const lastNumberSeason = _.last(element.seasons);
@@ -158,16 +152,26 @@ const TvShow: React.FC = () => {
       <Wrapper>
         <TitleWrapper>{t('pages.view.infos.actors.title')}</TitleWrapper>
         <WrapperContent>
-          <Slider {...settings}>
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={3}
+            navigation
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log('slide change')}
+          >
             {casts.map((item) => (
-              <ActorContainer
-                key={item.id}
-                profile_path={item.profile_path}
-                name={item.name}
-                character={item.character}
-              />
+              <SwiperSlide>
+                <ActorContainer
+                  key={item.id}
+                  profile_path={item.profile_path}
+                  name={item.name}
+                  character={item.character}
+                />
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         </WrapperContent>
       </Wrapper>
 

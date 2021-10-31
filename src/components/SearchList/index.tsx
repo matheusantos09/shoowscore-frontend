@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import Typography from '@material-ui/core/Typography';
 import { isAfter, parseISO } from 'date-fns';
 import LazyLoad from 'react-lazyload';
 import { Link } from 'react-router-dom';
@@ -12,11 +11,13 @@ import { fullPathImages } from '../../utils/fullPathImage';
 import PlaceholderImage from '../PlaceholderImage';
 import { useSearchSelector } from '../../store/reducersRoot/search';
 import { urlWithLang } from '../../utils/urlWithLang';
+import Typography from '../Generals/Typography';
+import { generateRandomImage } from '../../utils/generate-random-image';
 
 const SearchList: React.FC = (): any => {
   const defaultImg = useCallback((elementImage): void => {
     // eslint-disable-next-line no-param-reassign
-    elementImage.target.src = 'https://picsum.photos/250/375';
+    elementImage.target.src = generateRandomImage();
   }, []);
   const { t } = useTranslation();
   const search = useSearchSelector((state) => state.search);

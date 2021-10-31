@@ -8,12 +8,12 @@ import { useTranslation } from 'react-i18next';
 import { Creators as CreatorsElement } from './ducks/element';
 
 import LoaderCam from '../../components/LoaderCam';
-import ErrorMessage from '../../components/Alert/ErrorMessage';
 
 import { useElementSelector } from '../../store/reducersRoot/element';
 
 import ShowElement from '../../components/ShowElement';
 import NotFoundElement from '../../components/NotFoundElement';
+import Alert from '../../components/Alert';
 
 interface UrlParams {
   id: string;
@@ -59,10 +59,8 @@ const View: React.FC = () => {
 
         {/* Msg error */}
         {!loading && elementView.error ? (
-          <ErrorMessage message={elementView.msgError} />
-        ) : (
-          ''
-        )}
+          <Alert level="danger" message="PASSOOUUU A VEZZZ" />
+        ) : null}
       </div>
     </>
   );

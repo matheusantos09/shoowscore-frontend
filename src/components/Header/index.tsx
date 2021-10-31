@@ -4,133 +4,77 @@ import i18next from 'i18next';
 
 import { Link } from 'react-router-dom';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import {
+  FloatBar,
+  SelectorLanguage,
+  SelectorLanguageFloat,
+  SelectorLanguageItem,
+  SelectorLanguageItemSelect,
+  Toolbar,
+} from './styles';
 
-import ptBRFlag from '../../assets/images/flags/ptBR.svg';
-import enENFlag from '../../assets/images/flags/enEN.svg';
+import ptImageFlag from '../../assets/images/flags/ptBR.svg';
+import enImageFlag from '../../assets/images/flags/enEN.svg';
 import { urlWithLang } from '../../utils/urlWithLang';
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  footer: {
-    padding: theme.spacing(4),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectInput: {
-    width: 60,
-    borderRadius: '50%',
-    '&:before': {
-      display: 'none',
-    },
-  },
-  selectImg: {
-    width: 30,
-    borderRadius: '50%',
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    boxShadow: 'unset',
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-  },
-  flexLine: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  toolbarTop: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  link: {
-    color: '#FFF',
-    textDecoration: 'none !important',
-    outline: 'unset !important',
-  },
-}));
+import Typography from '../Generals/Typography';
 
 const Index: React.FC = () => {
   const { t } = useTranslation();
-  const classes = useStyles();
-  const [flag, setFlag] = useState<string>('en');
+  const [flagTextSelected, setFlagTextSelected] = useState<string>('en');
+  const [flagSelected, setFlagSelected] = useState<string>(enImageFlag);
 
-  const changeLanguage = (
-    event: React.ChangeEvent<{ value: unknown }>,
-  ): any => {
-    const languageSelected = event.target.value as string;
+  const changeLanguage = (language: string): any => {
+    if (flagTextSelected !== language) {
+      setFlagTextSelected(language);
 
-    setFlag(languageSelected);
-    i18next.changeLanguage(languageSelected);
+      switch (language) {
+        case 'pt':
+          setFlagSelected(ptImageFlag);
+          break;
+
+        default:
+          setFlagSelected(enImageFlag);
+      }
+
+      i18next.changeLanguage(language);
+    }
   };
 
   return (
     <>
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar className={classes.toolbarTop}>
-          <div className={classes.flexLine}>
-            <Typography variant="h6" noWrap>
-              <Link to={urlWithLang('')} className={classes.link}>
-                {t('site.name')}
-              </Link>
-            </Typography>
-          </div>
-          <div>
-            <FormControl className={classes.formControl}>
-              <Select
-                className={classes.selectInput}
-                labelId="flag-select-outlined-label"
-                id="flag-select-outlined"
-                value={flag}
-                onChange={changeLanguage}
+      <FloatBar>
+        <Toolbar>
+          <Typography>
+            <Link to={urlWithLang('')}>{t('site.name')}</Link>
+          </Typography>
+
+          <SelectorLanguage>
+            <SelectorLanguageItemSelect>
+              <img src={flagSelected} alt="" />
+            </SelectorLanguageItemSelect>
+            <SelectorLanguageFloat>
+              <SelectorLanguageItem
+                className={flagTextSelected === 'en' ? 'selected' : ''}
+                onClick={() => changeLanguage('en')}
               >
-                <MenuItem selected value="en">
-                  <img
-                    className={classes.selectImg}
-                    src={enENFlag}
-                    alt={t('inputs.change_language.flags.enEN')}
-                  />
-                </MenuItem>
-                <MenuItem value="pt">
-                  <img
-                    className={classes.selectImg}
-                    src={ptBRFlag}
-                    alt={t('inputs.change_language.flags.ptBR')}
-                  />
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </div>
+                <img
+                  src={enImageFlag}
+                  alt={t('inputs.change_language.flags.enEN')}
+                />
+              </SelectorLanguageItem>
+              <SelectorLanguageItem
+                className={flagTextSelected === 'pt' ? 'selected' : ''}
+                onClick={() => changeLanguage('pt')}
+              >
+                <img
+                  src={ptImageFlag}
+                  alt={t('inputs.change_language.flags.ptBR')}
+                />
+              </SelectorLanguageItem>
+            </SelectorLanguageFloat>
+          </SelectorLanguage>
         </Toolbar>
-      </AppBar>
+      </FloatBar>
     </>
   );
 };
