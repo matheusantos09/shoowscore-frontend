@@ -4,7 +4,7 @@ export const ContainerMain = styled.div`
   height: 100%;
 `;
 
-export const Content = styled.main`
+export const ContainerContent = styled.main`
   flex-grow: 1;
   padding: 0 14px;
   margin: 64px auto 0 auto;

@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from '../../Routes';
 import Header from '../Header';
 import Footer from '../Footer';
-import { ContainerMain, Content } from './styles';
+import { ContainerMain } from './styles';
 import GlobalStyle from '../Generals/GlobalStyles';
 
 const Container: React.FC = () => {
@@ -34,11 +34,9 @@ const Container: React.FC = () => {
 
           <Header />
 
-          <Content>
-            <Routes />
+          <Routes />
 
-            <Footer />
-          </Content>
+          <Footer />
         </ContainerMain>
       </BrowserRouter>
     </>

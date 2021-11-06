@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BounceLoader } from 'react-spinners';
 import { useHistory } from 'react-router-dom';
+import { BiSearch } from 'react-icons/bi';
 
 import Typography from '../Generals/Typography';
 
@@ -52,7 +53,7 @@ const SearchBlock: React.FC<Props> = ({ title = true, inputValue = '' }) => {
   return (
     <Container>
       {title ? (
-        <Typography className="big black">
+        <Typography className="big title">
           {t('phrase.search-content')}
         </Typography>
       ) : null}
@@ -66,7 +67,7 @@ const SearchBlock: React.FC<Props> = ({ title = true, inputValue = '' }) => {
         />
 
         <button type="submit">
-          {loading ? <BounceLoader size={30} /> : t('button.search')}
+          {loading ? <BounceLoader size={30} /> : <BiSearch />}
         </button>
       </form>
     </Container>
